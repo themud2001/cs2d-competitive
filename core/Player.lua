@@ -1,7 +1,7 @@
 Player = {
 	usgn = 0;
 	joinTeamAllowed = false;
-	rank = "Supreme";
+	rank = 8;
 	team = 0;
 };
 

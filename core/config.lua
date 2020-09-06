@@ -15,39 +15,48 @@ _chatColors = {
 };
 
 _ranks = {
-	["Iron"] = {
+	[0] = {
+		name = "Iron";
 		tag = "\169121085072[Iron]";
 	};
 
-	["Bronze"] = {
+	[1] = {
+		name = "Bronze";
 		tag = "\169237098005[Bronze]";
 	};
 
-	["Silver"] = {
+	[2] = {
+		name = "Silver";
 		tag = "\169130130130[Silver]";
 	};
 
-	["Gold"] = {
+	[3] = {
+		name = "Gold";
 		tag = "\169255220000[Gold]";
 	};
 
-	["Emerald"] = {
+	[4] = {
+		name = "Emerald";
 		tag = "\169033232002[Emerald]";
 	};
 
-	["Diamond"] = {
+	[5] = {
+		name = "Diamond";
 		tag = "\169000210252[Diamond]";
 	};
 
-	["Guardian"] = {
+	[6] = {
+		name = "Guardian";
 		tag = "\169163000205[Guardian]";
 	};
 
-	["Supreme"] = {
+	[7] = {
+		name = "Supreme";
 		tag = "\169000150255[S\169000125255u\169000100255p\169000080255r\169000065255e\169000035255m\169000000255e]";
 	};
 
-	["Overlord"] = {
-		tag = "\169000000000[O\169005005005v\169010010010e\169015015015r\169020020020l\169025025025o\169035035035r\169045045045d]";
+	[8] = {
+		name = "Overlord";
+		tag = "\169000000000[Overlord]";
 	};
 };
