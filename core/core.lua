@@ -3,9 +3,10 @@ for _, hook in pairs(_hooks) do
 end
 
 function _join(id)
-	_player[id] = Player:new();
+	_player[id] = Player:new({ name = player(id, "name") });
 
-	msg2(id, _serverMsgs["success"].."Welcome to "..game("sv_name"));
+	msg2(id, _serverMsgs["info"].."Welcome to "..game("sv_name"));
+	msg2(id, _serverMsgs["info"].."Your rank is ".._ranks[_player[id].rank].tag);
 
 	if(player(id, "usgn") == 0) then
 		msg2(id, _serverMsgs["error"].."You have to be logged in via USGN");
@@ -20,4 +21,15 @@ function _team(id, team)
 		msg2(id, _serverMsgs["error"].."You are not allowed to join a team");
 		return 1;
 	end
+
+	_player[id].team = team;
+end
+
+function _say(id, text)
+	msg(_chatColors[_player[id].team].._player[id].name.." ".._ranks[_player[id].rank].tag..": \169240240240"..text);
+	return 1;
+end
+
+function _name(id, old, new)
+	_player[id].name = new;
 end
