@@ -1,7 +1,7 @@
 Player = {
-	usgn = 0;
 	joinTeamAllowed = false;
 	rank = 8;
+	team = 0;
 };
 
 function Player:new(object)
