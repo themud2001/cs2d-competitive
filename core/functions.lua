@@ -25,7 +25,7 @@ function setMatchLive()
 	parse("restart ".._match.restartWait);
 	_match.prelive = true;
 	msg(_serverMsgs["info"].."Good luck & have fun!");
-	msg(_serverMsgs["info"].."The match is starting in 10 seconds...");
+	msg(_serverMsgs["info"].."The match is starting in ".._match.restartWait.." seconds...");
 end
 
 function switchPlayers()
@@ -44,5 +44,5 @@ function endFirstHalf()
 	_match.ttRounds, _match.ctRounds = _match.ctRounds, _match.ttRounds;
 	_match.half = 2;
 	switchPlayers();
-	msg(_serverMsgs["info"].."Good half! The first half has ended!");
+	msg(_serverMsgs["info"].."Good half! The first half has ended with the score: \169000225000".._match.ctRounds.."-".._match.ttRounds);
 end
