@@ -1,8 +1,7 @@
 _player = {};
 
 _match = {
-	-- Debugging
-	live = true;
+	live = false; -- Debugging
 	ttRounds = 0;
 	ctRounds = 0;
 }

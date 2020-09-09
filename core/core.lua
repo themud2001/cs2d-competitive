@@ -34,7 +34,7 @@ function _say(id, text)
 	if(text == "!startmix") then
 		local players = player(0, "table");
 		if(#players >= 10) then
-			msg("Mix is starting in 10 seconds...");
+			setMatchLive();
 			return 1;
 		else
 			msg("There are not enough players");
@@ -52,6 +52,8 @@ end
 
 function _endround(mode)
 	if(_match.live) then
+		if(mode == 3 or mode == 4 or mode == 5) then return; end
+		
 		if(mode == 1 or mode == 20) then
 			_match.ttRounds = _match.ttRounds + 1;
 		else

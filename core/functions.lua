@@ -13,3 +13,15 @@ function getMVP(roundDmg, totalDmg)
 
 	return roundMVPId, totalMVPId;
 end
+
+function setMatchLive()
+	parse("mp_startmoney 800");
+	parse("sv_fow 1");
+	parse("mp_roundtime 2");
+	parse("mp_freezetime 5");
+	parse("mp_lagcompensation 2");
+	parse("mp_autoteambalance 0");
+	parse("mp_unbuyable \"Tactical Shield, AWP, SG552, Aug, Scout, G3SG1, SG550\"");
+	parse("restart 10");
+	_match.live = true;
+end
