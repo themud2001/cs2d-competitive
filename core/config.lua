@@ -1,9 +1,12 @@
 _player = {};
 
 _match = {
+	prelive = false;
 	live = false; -- Debugging
 	ttRounds = 0;
 	ctRounds = 0;
+	roundsLimit = 2;
+	restartWait = 5;
 	half = 1;
 }
 

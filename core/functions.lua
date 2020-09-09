@@ -22,8 +22,27 @@ function setMatchLive()
 	parse("mp_lagcompensation 2");
 	parse("mp_autoteambalance 0");
 	parse("mp_unbuyable \"Tactical Shield, AWP, SG552, Aug, Scout, G3SG1, SG550\"");
-	parse("restart 10");
+	parse("restart ".._match.restartWait);
+	_match.prelive = true;
 	msg(_serverMsgs["info"].."Good luck & have fun!");
 	msg(_serverMsgs["info"].."The match is starting in 10 seconds...");
-	_match.live = true;
+end
+
+function switchPlayers()
+	local ttTable, ctTable = player(0, "team1"), player(0, "team2");
+
+	for _, id in pairs(ttTable) do
+		parse("makect "..id);
+	end
+
+	for _, id in pairs(ctTable) do
+		parse("maket "..id);
+	end
+end
+
+function endFirstHalf()
+	_match.ttRounds, _match.ctRounds = _match.ctRounds, _match.ttRounds;
+	_match.half = 2;
+	switchPlayers();
+	msg(_serverMsgs["info"].."Good half! The first half has ended!");
 end

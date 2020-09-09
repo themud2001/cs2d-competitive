@@ -83,9 +83,8 @@ function _endround(mode)
 		end
 
 		if(_match.half == 1) then
-			if(_match.ttRounds + _match.ctRounds == 15) then
-				msg(_serverMsgs["info"].."Good half! The first half has ended!");
-				_match.half = 2;
+			if(_match.ttRounds + _match.ctRounds == _match.roundsLimit) then
+				endFirstHalf();
 			end
 		else
 			if(_match.ttRounds == 15 and _match.ctRounds == 15) then
@@ -109,11 +108,14 @@ function _hit(id, source, weapon, hpdmg, apdmg, rawdmg)
 end
 
 function _startround(mode)
-	if(_match.live) then
+	if(_match.prelive) then
+		_match.live = true;
 		for id in pairs(player(0, "table")) do
 			if(_player[id].team ~= 0) then
 				_player[id].roundDmg = 0;
 			end
 		end
+
+		parse("setteamscores ".._match.ttRounds.." ".._match.ctRounds);
 	end
 end
