@@ -1,4 +1,5 @@
 Player = {
+	id = 1;
 	joinTeamAllowed = false;
 	rank = 0;
 	team = 0;
@@ -16,4 +17,11 @@ function Player:new(object)
 	setmetatable(object, self);
 	self.__index = self;
 	return object;
+end
+
+function Player:setStats()
+	self.score = player(self.id, "score");
+	self.deaths = player(self.id, "deaths");
+	self.assists = player(self.id, "assists");
+	self.MVP = player(self.id, "mvp");
 end

@@ -6,6 +6,7 @@ function _join(id)
 	_player[id] = Player:new({
 		name = player(id, "name");
 		usgn = player(id, "usgn");
+		id = id;
 	});
 
 	msg2(id, _serverMsgs["info"].."Welcome to "..game("sv_name"));
@@ -65,22 +66,18 @@ function _endround(mode)
 		end
 
 		local playersTable = player(0, "table");
-		local mvp = next(playersTable, nil);
+		local dmgTable = {};
+		local mvp;
+
 		for id in pairs(playersTable) do
 			if(_player[id].team ~= 0) then
-				_player[id].score = player(id, "score");
-				_player[id].deaths = player(id, "deaths");
-				_player[id].assists = player(id, "assists");
-				_player[id].MVP = player(id, "mvp");
-
-				if(id ~= mvp) then
-					if(_player[id].roundDmg > _player[mvp].roundDmg) then
-						mvp = id;
-					end
-				end
+				_player[id]:setStats();
+				dmgTable[id] = _player[id].roundDmg;
 			end
 			msg2(id, _serverMsgs["info"].."Your damage: \169250250250 (\169000225000".._player[id].roundDmg.."\169250250250)");
 		end
+
+		mvp = getRoundMVP(dmgTable);
 
 		if(_player[mvp].roundDmg > 0) then
 			msg(_serverMsgs["info"].."Highest damage: ".._chatColors[_player[mvp].team].._player[mvp].name.."\169250250250 (\169000225000".._player[mvp].roundDmg.."\169250250250)");
