@@ -82,7 +82,7 @@ function _endround(mode)
 			msg2(id, _serverMsgs["info"].."Your damage: \169250250250 (\169000225000".._player[id].roundDmg.."\169250250250)");
 		end
 
-		if((mode ~= 3 or mode ~= 4 or mode ~= 5) and _player[mvp].roundDmg > 0) then
+		if(_player[mvp].roundDmg > 0) then
 			msg(_serverMsgs["info"].."Highest damage: ".._chatColors[_player[mvp].team].._player[mvp].name.."\169250250250 (\169000225000".._player[mvp].roundDmg.."\169250250250)");
 			msg(_serverMsgs["info"].."Highest total damage: ".._chatColors[_player[mvp].team].._player[mvp].name.."\169250250250 (\169000225000".._player[mvp].totalDmg.."\169250250250)");
 		end
