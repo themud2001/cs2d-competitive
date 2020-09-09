@@ -42,13 +42,6 @@ function _say(id, text)
 		end
 	end
 
-	if(text == "!test") then
-		for _, val in pairs(player(0, "tableliving")) do
-			msg(val);
-		end
-		return 1;
-	end
-
 	msg(_chatColors[_player[id].team].._player[id].name.." ".._ranks[_player[id].rank].tag..": \169240240240"..text);
 	return 1;
 end
@@ -99,9 +92,11 @@ function _hit(id, source, weapon, hpdmg, apdmg, rawdmg)
 end
 
 function _startround(mode)
-	for id in pairs(player(0, "table")) do
-		if(_player[id].team ~= 0) then
-			_player[id].roundDmg = 0;
+	if(_match.live) then
+		for id in pairs(player(0, "table")) do
+			if(_player[id].team ~= 0) then
+				_player[id].roundDmg = 0;
+			end
 		end
 	end
 end
