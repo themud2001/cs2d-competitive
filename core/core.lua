@@ -110,6 +110,10 @@ end
 function _startround(mode)
 	if(_match.prelive) then
 		_match.live = true;
+		_match.prelive = false;
+	end
+
+	if(_match.live) then
 		for id in pairs(player(0, "table")) do
 			if(_player[id].team ~= 0) then
 				_player[id].roundDmg = 0;
