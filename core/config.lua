@@ -4,6 +4,7 @@ _match = {
 	live = false; -- Debugging
 	ttRounds = 0;
 	ctRounds = 0;
+	half = 1;
 }
 
 _hooks = {"join", "team", "say", "name", "endround", "hit", "startround"};

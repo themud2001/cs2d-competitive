@@ -23,5 +23,7 @@ function setMatchLive()
 	parse("mp_autoteambalance 0");
 	parse("mp_unbuyable \"Tactical Shield, AWP, SG552, Aug, Scout, G3SG1, SG550\"");
 	parse("restart 10");
+	msg(_serverMsgs["info"].."Good luck & have fun!");
+	msg(_serverMsgs["info"].."The match is starting in 10 seconds...");
 	_match.live = true;
 end

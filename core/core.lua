@@ -53,7 +53,7 @@ end
 function _endround(mode)
 	if(_match.live) then
 		if(mode == 3 or mode == 4 or mode == 5) then return; end
-		
+
 		if(mode == 1 or mode == 20) then
 			_match.ttRounds = _match.ttRounds + 1;
 		else
@@ -72,14 +72,29 @@ function _endround(mode)
 				dmgTable.roundDmg[id] = _player[id].roundDmg;
 				dmgTable.totalDmg[id] = _player[id].totalDmg;
 			end
-			msg2(id, _serverMsgs["info"].."Your damage: \169250250250 (\169000225000".._player[id].roundDmg.."\169250250250)");
+			msg2(id, _serverMsgs["info"].."Your damage: \169250250250(\169000225000".._player[id].roundDmg.."\169250250250 damage)");
 		end
 
 		local roundMVP, totalMVP = getMVP(dmgTable.roundDmg, dmgTable.totalDmg);
 
 		if(_player[roundMVP].roundDmg > 0) then
-			msg(_serverMsgs["info"].."Highest damage: ".._chatColors[_player[roundMVP].team].._player[roundMVP].name.."\169250250250 (\169000225000".._player[roundMVP].roundDmg.."\169250250250)");
-			msg(_serverMsgs["info"].."Highest total damage: ".._chatColors[_player[totalMVP].team].._player[totalMVP].name.."\169250250250 (\169000225000".._player[totalMVP].totalDmg.."\169250250250)");
+			msg(_serverMsgs["info"].."Highest damage: ".._chatColors[_player[roundMVP].team].._player[roundMVP].name.."\169250250250 (\169000225000".._player[roundMVP].roundDmg.."\169250250250 damage)");
+			msg(_serverMsgs["info"].."Highest total damage: ".._chatColors[_player[totalMVP].team].._player[totalMVP].name.."\169250250250 (\169000225000".._player[totalMVP].totalDmg.."\169250250250 damage)");
+		end
+
+		if(_match.half == 1) then
+			if(_match.ttRounds + _match.ctRounds == 15) then
+				msg(_serverMsgs["info"].."Good half! The first half has ended!");
+				_match.half = 2;
+			end
+		else
+			if(_match.ttRounds == 15 and _match.ctRounds == 15) then
+				msg("Draw");
+			elseif(_match.ttRounds == 16) then
+				msg("TT won!");
+			elseif(_match.ctRounds == 16) then
+				msg("CT won!");
+			end
 		end
 	end
 end
