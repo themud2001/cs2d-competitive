@@ -1,6 +1,13 @@
 _player = {};
 
-_hooks = {"join", "team", "say", "name"};
+_match = {
+	-- Debugging
+	live = true;
+	ttRounds = 0;
+	ctRounds = 0;
+}
+
+_hooks = {"join", "team", "say", "name", "endround", "hit", "startround"};
 
 _serverMsgs = {
 	["info"] = "\169041098255[Info]: \169250250250";
