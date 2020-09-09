@@ -66,22 +66,25 @@ function _endround(mode)
 		end
 
 		local playersTable = player(0, "table");
-		local dmgTable = {};
-		local mvp;
+		local dmgTable = {
+			roundDmg = {};
+			totalDmg = {};
+		};
 
 		for id in pairs(playersTable) do
 			if(_player[id].team ~= 0) then
 				_player[id]:setStats();
-				dmgTable[id] = _player[id].roundDmg;
+				dmgTable.roundDmg[id] = _player[id].roundDmg;
+				dmgTable.totalDmg[id] = _player[id].totalDmg;
 			end
 			msg2(id, _serverMsgs["info"].."Your damage: \169250250250 (\169000225000".._player[id].roundDmg.."\169250250250)");
 		end
 
-		mvp = getRoundMVP(dmgTable);
+		local roundMVP, totalMVP = getMVP(dmgTable.roundDmg, dmgTable.totalDmg);
 
-		if(_player[mvp].roundDmg > 0) then
-			msg(_serverMsgs["info"].."Highest damage: ".._chatColors[_player[mvp].team].._player[mvp].name.."\169250250250 (\169000225000".._player[mvp].roundDmg.."\169250250250)");
-			msg(_serverMsgs["info"].."Highest total damage: ".._chatColors[_player[mvp].team].._player[mvp].name.."\169250250250 (\169000225000".._player[mvp].totalDmg.."\169250250250)");
+		if(_player[roundMVP].roundDmg > 0) then
+			msg(_serverMsgs["info"].."Highest damage: ".._chatColors[_player[roundMVP].team].._player[roundMVP].name.."\169250250250 (\169000225000".._player[roundMVP].roundDmg.."\169250250250)");
+			msg(_serverMsgs["info"].."Highest total damage: ".._chatColors[_player[totalMVP].team].._player[totalMVP].name.."\169250250250 (\169000225000".._player[totalMVP].totalDmg.."\169250250250)");
 		end
 	end
 end
