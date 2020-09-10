@@ -33,6 +33,8 @@ function Player:resetStats()
 	self.rounds = 0;
 	self.ADR = 0;
 	self.matchPoints = 0;
+	self.roundDmg = 0;
+	self.totalDmg = 0;
 end
 
 function Player:calculateWin()
