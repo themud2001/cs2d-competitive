@@ -11,6 +11,7 @@ Player = {
 	ADR = 0;
 	MVP = 0;
 	rounds = 0;
+	matchPoints = 0;
 
 	-- Saved for the player
 	rank = 0;
@@ -31,6 +32,7 @@ function Player:resetStats()
 	self.MVP = 0;
 	self.rounds = 0;
 	self.ADR = 0;
+	self.matchPoints = 0;
 end
 
 function Player:calculateWin()
@@ -39,5 +41,6 @@ function Player:calculateWin()
 	local MVPs = self.MVP * 0.2;
 	self.ADR = self.totalDmg / self.rounds;
 	local ADR = self.ADR * 0.1;
-	self.points = self.points + math.abs((score + assists + MVPs + ADR));
+	self.matchPoints = (score + assists + MVPs + ADR);
+	self.points = self.points + self.matchPoints;
 end
