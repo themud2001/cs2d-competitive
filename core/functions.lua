@@ -49,12 +49,12 @@ function _match.calculateWin()
 	local teamWon = (_match.teamWon == 1 and "1") or "2";
 	for _, id in pairs(player(0, "team"..teamWon)) do
 		_player[id]:calculateWin();
-		_player[id]:printStats();
 	end
 end
 
-function _match.resetPlayersStats()
+function _match.printResetStats()
 	for _, id in pairs(player(0, "table")) do
+		_player[id]:printStats();
 		_player[id]:resetStats();
 	end
 end
