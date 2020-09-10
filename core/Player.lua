@@ -44,3 +44,14 @@ function Player:calculateWin()
 	self.matchPoints = (score + assists + MVPs + ADR);
 	self.points = self.points + self.matchPoints;
 end
+
+function Player:printStats()
+	msg2(self.id, _chatColors[0].."-----------Match Stats-----------");
+	msg2(self.id, _chatColors[0].."Kills: \169000225000"..self.score);
+	msg2(self.id, _chatColors[0].."Deaths: \169000225000"..self.deaths);
+	msg2(self.id, _chatColors[0].."Assists: \169000225000"..self.assists);
+	msg2(self.id, _chatColors[0].."MVPs: \169000225000"..self.MVP);
+	msg2(self.id, _chatColors[0].."ADR: \169000225000"..self.ADR);
+	msg2(self.id, _chatColors[0].."Rounds played: \169000225000"..self.rounds);
+	msg2(self.id, _chatColors[0].."Points: \169000225000+"..self.matchPoints);
+end

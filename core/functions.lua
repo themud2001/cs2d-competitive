@@ -48,6 +48,7 @@ end
 function _match.calculateWin()
 	for _, id in pairs(player(0, "team".._match.teamWon)) do
 		_player[id]:calculateWin();
+		_player[id]:printStats();
 	end
 end
 
