@@ -15,7 +15,6 @@ function _match.getMVP(roundDmg, totalDmg)
 end
 
 function _match.reset()
-	_match.printResetStats();
 	_match.ttRounds = 0;
 	_match.ctRounds = 0;
 	_match.prelive = false;
@@ -25,6 +24,7 @@ function _match.reset()
 end
 
 function _match.setLive()
+	_match.printResetStats();
 	_match.reset();
 	parse("mp_startmoney 800");
 	parse("sv_fow 1");
