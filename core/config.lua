@@ -14,7 +14,7 @@ _match = {
 	ctPlayers = {};
 }
 
-_hooks = {"join", "team", "say", "name", "endround", "hit", "startround", "startround_prespawn"};
+_hooks = {"join", "team", "say", "name", "endround", "hit", "startround", "startround_prespawn", "kill"};
 
 _serverMsgs = {
 	["info"] = "\169041098255[Info]: \169250250250";

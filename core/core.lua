@@ -66,14 +66,12 @@ function _endround(mode)
 		};
 
 		for _, id in pairs(_match.ttPlayers) do
-			_player[id]:setStats();
 			dmgTable.roundDmg[id] = _player[id].roundDmg;
 			dmgTable.totalDmg[id] = _player[id].totalDmg;
 			msg2(id, _serverMsgs["info"].."Your damage: \169250250250(\169000225000".._player[id].roundDmg.."\169250250250 damage)");
 		end
 
 		for _, id in pairs(_match.ctPlayers) do
-			_player[id]:setStats();
 			dmgTable.roundDmg[id] = _player[id].roundDmg;
 			dmgTable.totalDmg[id] = _player[id].totalDmg;
 			msg2(id, _serverMsgs["info"].."Your damage: \169250250250(\169000225000".._player[id].roundDmg.."\169250250250 damage)");
@@ -147,5 +145,13 @@ function _startround_prespawn(mode)
 	if(_match.finished) then
 		_match.calculateStats();
 		_match.finished = false;
+	end
+end
+
+function _kill(killer, victim, weapon, x, y, killerobject, assistant)
+	if(_match.live) then
+		_player[killer].score = _player[killer].score + 1;
+		if(assistant ~= 0) then _player[assistant].assists = _player[assistant].assists + 1; end
+		_player[victim].deaths = _player[victim].deaths + 1;
 	end
 end
