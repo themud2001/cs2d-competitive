@@ -46,7 +46,7 @@ function Player:calculateWin()
 end
 
 function Player:printStats()
-	msg2(self.id, _chatColors[0].."-----------Match Stats-----------");
+	msg2(self.id, _chatColors[0].."---------Match Stats---------");
 	msg2(self.id, _chatColors[0].."Kills: \169000225000"..self.score);
 	msg2(self.id, _chatColors[0].."Deaths: \169000225000"..self.deaths);
 	msg2(self.id, _chatColors[0].."Assists: \169000225000"..self.assists);
