@@ -60,18 +60,24 @@ function _endround(mode)
 			_match.ctRounds = _match.ctRounds + 1;
 		end
 
-		local playersTable = player(0, "table");
+		local ttTable = player(0, "team1");
+		local ctTable = player(0, "team2");
 		local dmgTable = {
 			roundDmg = {};
 			totalDmg = {};
 		};
 
-		for id in pairs(playersTable) do
-			if(_player[id].team ~= 0) then
-				_player[id]:setStats();
-				dmgTable.roundDmg[id] = _player[id].roundDmg;
-				dmgTable.totalDmg[id] = _player[id].totalDmg;
-			end
+		for _, id in pairs(ttTable) do
+			_player[id]:setStats();
+			dmgTable.roundDmg[id] = _player[id].roundDmg;
+			dmgTable.totalDmg[id] = _player[id].totalDmg;
+			msg2(id, _serverMsgs["info"].."Your damage: \169250250250(\169000225000".._player[id].roundDmg.."\169250250250 damage)");
+		end
+
+		for _, id in pairs(ctTable) do
+			_player[id]:setStats();
+			dmgTable.roundDmg[id] = _player[id].roundDmg;
+			dmgTable.totalDmg[id] = _player[id].totalDmg;
 			msg2(id, _serverMsgs["info"].."Your damage: \169250250250(\169000225000".._player[id].roundDmg.."\169250250250 damage)");
 		end
 

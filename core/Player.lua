@@ -1,8 +1,7 @@
 Player = {
+	-- The values change every match
 	id = 1;
 	joinTeamAllowed = false;
-	rank = 0;
-	points = 0;
 	team = 0;
 	score = 0;
 	deaths = 0;
@@ -12,6 +11,10 @@ Player = {
 	ADR = 0;
 	MVP = 0;
 	rounds = 0;
+
+	-- Saved for the player
+	rank = 0;
+	points = 0;
 };
 
 function Player:new(object)
