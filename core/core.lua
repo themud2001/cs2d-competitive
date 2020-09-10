@@ -60,21 +60,19 @@ function _endround(mode)
 			_match.ctRounds = _match.ctRounds + 1;
 		end
 
-		local ttTable = player(0, "team1");
-		local ctTable = player(0, "team2");
 		local dmgTable = {
 			roundDmg = {};
 			totalDmg = {};
 		};
 
-		for _, id in pairs(ttTable) do
+		for _, id in pairs(_match.ttPlayers) do
 			_player[id]:setStats();
 			dmgTable.roundDmg[id] = _player[id].roundDmg;
 			dmgTable.totalDmg[id] = _player[id].totalDmg;
 			msg2(id, _serverMsgs["info"].."Your damage: \169250250250(\169000225000".._player[id].roundDmg.."\169250250250 damage)");
 		end
 
-		for _, id in pairs(ctTable) do
+		for _, id in pairs(_match.ctPlayers) do
 			_player[id]:setStats();
 			dmgTable.roundDmg[id] = _player[id].roundDmg;
 			dmgTable.totalDmg[id] = _player[id].totalDmg;
@@ -127,11 +125,11 @@ function _startround(mode)
 	end
 
 	if(_match.live) then
-		for _, id in pairs(player(0, "team1")) do
+		for _, id in pairs(_match.ttPlayers) do
 			_player[id].roundDmg = 0;
 		end
 
-		for _, id in pairs(player(0, "team2")) do
+		for _, id in pairs(_match.ctPlayers) do
 			_player[id].roundDmg = 0;
 		end
 
@@ -141,6 +139,11 @@ end
 
 
 function _startround_prespawn(mode)
+	if(_match.live) then
+		_match.ttPlayers = player(0, "team1");
+		_match.ctPlayers = player(0, "team2");
+	end
+
 	if(_match.finished) then
 		_match.calculateStats();
 		_match.finished = false;

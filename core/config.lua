@@ -10,6 +10,8 @@ _match = {
 	restartWait = 5;
 	half = 1;
 	teamWon = 0;
+	ttPlayers = {};
+	ctPlayers = {};
 }
 
 _hooks = {"join", "team", "say", "name", "endround", "hit", "startround", "startround_prespawn"};

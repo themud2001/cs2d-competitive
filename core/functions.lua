@@ -29,13 +29,11 @@ function _match.setMatchLive()
 end
 
 function _match.switchPlayers()
-	local ttTable, ctTable = player(0, "team1"), player(0, "team2");
-
-	for _, id in pairs(ttTable) do
+	for _, id in pairs(_match.ttPlayers) do
 		parse("makect "..id);
 	end
 
-	for _, id in pairs(ctTable) do
+	for _, id in pairs(_match.ctPlayers) do
 		parse("maket "..id);
 	end
 end
