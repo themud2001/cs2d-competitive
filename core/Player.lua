@@ -55,3 +55,8 @@ function Player:printStats()
 	msg2(self.id, _chatColors[0].."Rounds played: \169000225000"..self.rounds);
 	msg2(self.id, _chatColors[0].."Points: \169000225000+"..self.matchPoints);
 end
+
+function Player:maintainStats()
+	parse("setscore "..self.id.." "..self.score);
+	parse("setdeaths "..self.id.." "..self.score);
+end
