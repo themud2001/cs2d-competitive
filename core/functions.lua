@@ -63,6 +63,13 @@ function _match.calculateWin()
 	end
 end
 
+function _match.calculateLose()
+	local teamLost = (_match.teamWon == 1 and "2") or "1";
+	for _, id in pairs(player(0, "team"..teamLost)) do
+		_player[id]:calculateLose();
+	end
+end
+
 function _match.printResetStats(mode)
 	for _, id in pairs(player(0, "table")) do
 		if(mode == "all") then

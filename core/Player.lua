@@ -47,6 +47,13 @@ function Player:calculateWin()
 	self.points = self.points + self.matchPoints;
 end
 
+function Player:calculateLose()
+	local deaths = self.deaths * 0.9;
+	local bonus = (self.score + self.assists + self.MVP + self.ADR) * 0.05;
+	self.matchPoints = deaths + 10 - bonus;
+	self.points = self.points - self.matchPoints;
+end
+
 function Player:printStats()
 	msg2(self.id, _chatColors[0].."---------Match Stats---------");
 	msg2(self.id, _chatColors[0].."Kills: \169000225000"..self.score);
@@ -55,7 +62,7 @@ function Player:printStats()
 	msg2(self.id, _chatColors[0].."MVPs: \169000225000"..self.MVP);
 	msg2(self.id, _chatColors[0].."ADR: \169000225000"..self.ADR);
 	msg2(self.id, _chatColors[0].."Rounds played: \169000225000"..self.rounds);
-	msg2(self.id, _chatColors[0].."Points: \169000225000+"..self.matchPoints);
+	msg2(self.id, _chatColors[0].."Points: "..((_player[self.id].team == _match.teamWon and "\169000225000+") or "\169240000000-")..self.matchPoints);
 end
 
 function Player:maintainStats()
