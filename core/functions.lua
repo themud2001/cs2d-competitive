@@ -14,11 +14,18 @@ function _match.getMVP(roundDmg, totalDmg)
 	return roundMVPId, totalMVPId;
 end
 
-function _match.setLive()
+function _match.reset()
 	_match.printResetStats();
 	_match.ttRounds = 0;
 	_match.ctRounds = 0;
-	
+	_match.prelive = false;
+	_match.live = false;
+	_match.finished = false;
+	_match.half = 1;
+end
+
+function _match.setLive()
+	_match.reset();
 	parse("mp_startmoney 800");
 	parse("sv_fow 1");
 	parse("mp_roundtime 2");
