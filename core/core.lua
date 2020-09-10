@@ -148,6 +148,7 @@ function _startround_prespawn(mode)
 	if(_match.finished) then
 		_match.calculateWin();
 		_match.printResetStats();
+		_match.live = false;
 		_match.finished = false;
 	end
 end
@@ -155,7 +156,7 @@ end
 function _kill(killer, victim, weapon, x, y, killerobject, assistant)
 	if(_match.live) then
 		_player[killer].score = _player[killer].score + 1;
-		if(assistant ~= 0) then _player[assistant].assists = _player[assistant].assists + 1; end
 		_player[victim].deaths = _player[victim].deaths + 1;
+		if(assistant ~= 0) then _player[assistant].assists = _player[assistant].assists + 1; end
 	end
 end
