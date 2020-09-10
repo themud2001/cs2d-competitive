@@ -14,7 +14,7 @@ Player = {
 	matchPoints = 0;
 
 	-- Saved for the player
-	rank = 8;
+	rank = 3;
 	points = 0;
 };
 

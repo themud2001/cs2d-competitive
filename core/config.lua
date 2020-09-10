@@ -49,7 +49,7 @@ _ranks = {
 
 	[3] = {
 		name = "Gold";
-		tag = "\169255220000[Gold]";
+		tag = "\169240210000[Gold]";
 		points = 1000;
 	};
 
