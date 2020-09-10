@@ -80,6 +80,7 @@ function _endround(mode)
 		local roundMVP, totalMVP = _match.getMVP(dmgTable.roundDmg, dmgTable.totalDmg);
 
 		if(_player[roundMVP].roundDmg > 0) then
+			_player[roundMVP].MVP = _player[roundMVP].MVP + 1;
 			msg(_serverMsgs["info"].."Highest damage: ".._chatColors[_player[roundMVP].team].._player[roundMVP].name.."\169250250250 (\169000225000".._player[roundMVP].roundDmg.."\169250250250 damage)");
 			msg(_serverMsgs["info"].."Highest total damage: ".._chatColors[_player[totalMVP].team].._player[totalMVP].name.."\169250250250 (\169000225000".._player[totalMVP].totalDmg.."\169250250250 damage)");
 		end
