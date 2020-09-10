@@ -15,6 +15,10 @@ function _match.getMVP(roundDmg, totalDmg)
 end
 
 function _match.setLive()
+	_match.printResetStats();
+	_match.ttRounds = 0;
+	_match.ctRounds = 0;
+	
 	parse("mp_startmoney 800");
 	parse("sv_fow 1");
 	parse("mp_roundtime 2");
@@ -52,9 +56,11 @@ function _match.calculateWin()
 	end
 end
 
-function _match.printResetStats()
+function _match.printResetStats(mode)
 	for _, id in pairs(player(0, "table")) do
-		_player[id]:printStats();
+		if(mode == "all") then
+			_player[id]:printStats();
+		end
 		_player[id]:resetStats();
 	end
 end
