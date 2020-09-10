@@ -51,3 +51,9 @@ function _match.calculateStats()
 		msg(_player[id].points);
 	end
 end
+
+function _match.resetPlayersStats()
+	for _, id in pairs(player(0, "table")) do
+		_player[id]:resetStats();
+	end
+end

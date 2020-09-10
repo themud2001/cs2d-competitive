@@ -145,6 +145,7 @@ end
 function _startround_prespawn(mode)
 	if(_match.finished) then
 		_match.calculateStats();
+		_match.resetPlayersStats();
 		_match.finished = false;
 	end
 end

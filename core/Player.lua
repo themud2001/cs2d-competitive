@@ -24,13 +24,13 @@ function Player:new(object)
 	return object;
 end
 
-function Player:setStats()
-	self.score = player(self.id, "score");
-	self.deaths = player(self.id, "deaths");
-	self.assists = player(self.id, "assists");
-	self.MVP = player(self.id, "mvp");
-	self.rounds = self.rounds + 1;
-	self.ADR = self.totalDmg / self.rounds;
+function Player:resetStats()
+	self.score = 0;
+	self.deaths = 0;
+	self.assists = 0;
+	self.MVP = 0;
+	self.rounds = 0;
+	self.ADR = 0;
 end
 
 function Player:calculateWin()
