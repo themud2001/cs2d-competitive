@@ -14,7 +14,7 @@ Player = {
 	matchPoints = 0;
 
 	-- Saved for the player
-	rank = 0;
+	rank = 8;
 	points = 0;
 };
 
@@ -52,6 +52,7 @@ function Player:calculateLose()
 	local bonus = (self.score + self.assists + self.MVP + self.ADR) * 0.05;
 	self.matchPoints = deaths + 10 - bonus;
 	self.points = self.points - self.matchPoints;
+	if(self.points <= 0) then self.points = 0; end
 end
 
 function Player:printStats()
@@ -68,4 +69,15 @@ end
 function Player:maintainStats()
 	parse("setscore "..self.id.." "..self.score);
 	parse("setdeaths "..self.id.." "..self.deaths);
+end
+
+function Player:updateRank()
+	if(self.rank >= (#_ranks - 1)) then return; end
+	if(self.points >= _ranks[self.rank + 1].points) then
+		self.rank = self.rank + 1;
+		msg2(self.id, _serverMsgs["success"].."Congratulations! You ranked up to: ".._ranks[self.rank].tag);
+	elseif(self.points < _ranks[self.rank].points) then
+		self.rank = self.rank - 1;
+		msg2(self.id, _serverMsgs["error"].."You deranked down to: ".._ranks[self.rank].tag);
+	end
 end

@@ -74,6 +74,7 @@ function _match.printResetStats(mode)
 	for _, id in pairs(player(0, "table")) do
 		if(mode == "all") then
 			_player[id]:printStats();
+			_player[id]:updateRank();
 		end
 		_player[id]:resetStats();
 	end
