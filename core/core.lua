@@ -90,10 +90,17 @@ function _endround(mode)
 			if(_match.ttRounds == _match.roundsLimit and _match.ctRounds == _match.roundsLimit) then
 				msg("Draw");
 			elseif(_match.ttRounds == _match.roundsLimit + 1) then
-				msg("TT won!");
+				_match.teamWon = 1;
+				_match.finished = true;
 			elseif(_match.ctRounds == _match.roundsLimit + 1) then
-				msg("CT won!");
+				_match.teamWon = 2;
+				_match.finished = true;
 			end
+		end
+
+		if(_match.finished) then
+			msg(_serverMsgs["info"].."Good game! The match has finished with the score: \169000225000".._match.ctRounds.."-".._match.ttRounds);
+			msg(_serverMsgs["info"].."The winning team is: ".._chatColors[_match.teamWon]..((_match.teamWon == 1 and "TT") or "CT"));
 		end
 	end
 end
@@ -121,5 +128,13 @@ function _startround(mode)
 		end
 
 		parse("setteamscores ".._match.ttRounds.." ".._match.ctRounds);
+	end
+end
+
+
+function _startround_prespawn(mode)
+	if(_match.finished) then
+		calculateStats();
+		_match.finished = false;
 	end
 end

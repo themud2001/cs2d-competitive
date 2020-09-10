@@ -3,14 +3,16 @@ _player = {};
 _match = {
 	prelive = false;
 	live = false; -- Debugging
+	finished = false;
 	ttRounds = 0;
 	ctRounds = 0;
 	roundsLimit = 2;
 	restartWait = 5;
 	half = 1;
+	teamWon = 0;
 }
 
-_hooks = {"join", "team", "say", "name", "endround", "hit", "startround"};
+_hooks = {"join", "team", "say", "name", "endround", "hit", "startround", "startround_prespawn"};
 
 _serverMsgs = {
 	["info"] = "\169041098255[Info]: \169250250250";

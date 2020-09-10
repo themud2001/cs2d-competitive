@@ -46,3 +46,10 @@ function endFirstHalf()
 	switchPlayers();
 	msg(_serverMsgs["info"].."Good half! The first half has ended with the score: \169000225000".._match.ctRounds.."-".._match.ttRounds);
 end
+
+function calculateStats()
+	for _, id in pairs(player(0, "team".._match.teamWon)) do
+		_player[id]:calculateWin();
+		msg(_player[id].points);
+	end
+end
