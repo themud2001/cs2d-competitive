@@ -58,5 +58,5 @@ end
 
 function Player:maintainStats()
 	parse("setscore "..self.id.." "..self.score);
-	parse("setdeaths "..self.id.." "..self.score);
+	parse("setdeaths "..self.id.." "..self.deaths);
 end

@@ -131,12 +131,12 @@ function _startround(mode)
 
 		for _, id in pairs(_match.ttPlayers) do
 			_player[id].roundDmg = 0;
-			_player[id].maintainStats();
+			_player[id]:maintainStats();
 		end
 
 		for _, id in pairs(_match.ctPlayers) do
 			_player[id].roundDmg = 0;
-			_player[id].maintainStats();
+			_player[id]:maintainStats();
 		end
 
 		parse("setteamscores ".._match.ttRounds.." ".._match.ctRounds);
