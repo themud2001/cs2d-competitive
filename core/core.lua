@@ -34,7 +34,7 @@ function _say(id, text)
 	if(text == "!startmix") then
 		local players = player(0, "table");
 		if(#players >= 10) then
-			_match.setMatchLive();
+			_match.setLive();
 			return 1;
 		else
 			msg("There are not enough players");
@@ -128,9 +128,7 @@ function _startround(mode)
 	if(_match.live) then
 		_match.ttPlayers = player(0, "team1");
 		_match.ctPlayers = player(0, "team2");
-	end
-
-	if(_match.live) then
+		
 		for _, id in pairs(_match.ttPlayers) do
 			_player[id].roundDmg = 0;
 		end

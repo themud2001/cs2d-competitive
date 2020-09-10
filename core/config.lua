@@ -2,7 +2,7 @@ _player = {};
 
 _match = {
 	prelive = false;
-	live = false; -- Debugging
+	live = false;
 	finished = false;
 	ttRounds = 0;
 	ctRounds = 0;

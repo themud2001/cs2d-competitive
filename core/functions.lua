@@ -14,7 +14,7 @@ function _match.getMVP(roundDmg, totalDmg)
 	return roundMVPId, totalMVPId;
 end
 
-function _match.setMatchLive()
+function _match.setLive()
 	parse("mp_startmoney 800");
 	parse("sv_fow 1");
 	parse("mp_roundtime 2");
