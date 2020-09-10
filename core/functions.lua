@@ -1,4 +1,4 @@
-function getMVP(roundDmg, totalDmg)
+function _match.getMVP(roundDmg, totalDmg)
 	local roundMVP = math.max(unpack(roundDmg));
 	local totalMVP = math.max(unpack(totalDmg));
 	local roundMVPId, totalMVPId;
@@ -14,7 +14,7 @@ function getMVP(roundDmg, totalDmg)
 	return roundMVPId, totalMVPId;
 end
 
-function setMatchLive()
+function _match.setMatchLive()
 	parse("mp_startmoney 800");
 	parse("sv_fow 1");
 	parse("mp_roundtime 2");
@@ -28,7 +28,7 @@ function setMatchLive()
 	msg(_serverMsgs["info"].."The match is starting in ".._match.restartWait.." seconds...");
 end
 
-function switchPlayers()
+function _match.switchPlayers()
 	local ttTable, ctTable = player(0, "team1"), player(0, "team2");
 
 	for _, id in pairs(ttTable) do
@@ -40,14 +40,14 @@ function switchPlayers()
 	end
 end
 
-function endFirstHalf()
+function _match.endFirstHalf()
 	_match.ttRounds, _match.ctRounds = _match.ctRounds, _match.ttRounds;
+	_match.switchPlayers();
 	_match.half = 2;
-	switchPlayers();
 	msg(_serverMsgs["info"].."Good half! The first half has ended with the score: \169000225000".._match.ctRounds.."-".._match.ttRounds);
 end
 
-function calculateStats()
+function _match.calculateStats()
 	for _, id in pairs(player(0, "team".._match.teamWon)) do
 		_player[id]:calculateWin();
 		msg(_player[id].points);

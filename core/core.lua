@@ -34,7 +34,7 @@ function _say(id, text)
 	if(text == "!startmix") then
 		local players = player(0, "table");
 		if(#players >= 10) then
-			setMatchLive();
+			_match.setMatchLive();
 			return 1;
 		else
 			msg("There are not enough players");
@@ -81,7 +81,7 @@ function _endround(mode)
 			msg2(id, _serverMsgs["info"].."Your damage: \169250250250(\169000225000".._player[id].roundDmg.."\169250250250 damage)");
 		end
 
-		local roundMVP, totalMVP = getMVP(dmgTable.roundDmg, dmgTable.totalDmg);
+		local roundMVP, totalMVP = _match.getMVP(dmgTable.roundDmg, dmgTable.totalDmg);
 
 		if(_player[roundMVP].roundDmg > 0) then
 			msg(_serverMsgs["info"].."Highest damage: ".._chatColors[_player[roundMVP].team].._player[roundMVP].name.."\169250250250 (\169000225000".._player[roundMVP].roundDmg.."\169250250250 damage)");
@@ -90,7 +90,7 @@ function _endround(mode)
 
 		if(_match.half == 1) then
 			if(_match.ttRounds + _match.ctRounds == _match.roundsLimit) then
-				endFirstHalf();
+				_match.endFirstHalf();
 			end
 		else
 			if(_match.ttRounds == _match.roundsLimit and _match.ctRounds == _match.roundsLimit) then
@@ -127,10 +127,12 @@ function _startround(mode)
 	end
 
 	if(_match.live) then
-		for id in pairs(player(0, "table")) do
-			if(_player[id].team ~= 0) then
-				_player[id].roundDmg = 0;
-			end
+		for _, id in pairs(player(0, "team1")) do
+			_player[id].roundDmg = 0;
+		end
+
+		for _, id in pairs(player(0, "team2")) do
+			_player[id].roundDmg = 0;
 		end
 
 		parse("setteamscores ".._match.ttRounds.." ".._match.ctRounds);
@@ -140,7 +142,7 @@ end
 
 function _startround_prespawn(mode)
 	if(_match.finished) then
-		calculateStats();
+		_match.calculateStats();
 		_match.finished = false;
 	end
 end
