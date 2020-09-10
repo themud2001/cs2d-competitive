@@ -45,8 +45,9 @@ function _match.endFirstHalf()
 	msg(_serverMsgs["info"].."Good half! The first half has ended with the score: \169000225000".._match.ctRounds.."-".._match.ttRounds);
 end
 
-function _match.calculateWin()
-	for _, id in pairs(player(0, "team".._match.teamWon)) do
+function _match.calculateStats()
+	local teamWon = (_match.teamWon == 1 and "1") or "2";
+	for _, id in pairs(player(0, "team"..teamWon)) do
 		_player[id]:calculateWin();
 		_player[id]:printStats();
 	end
