@@ -125,6 +125,11 @@ function _startround(mode)
 	end
 
 	if(_match.live) then
+		_match.ttPlayers = player(0, "team1");
+		_match.ctPlayers = player(0, "team2");
+	end
+
+	if(_match.live) then
 		for _, id in pairs(_match.ttPlayers) do
 			_player[id].roundDmg = 0;
 		end
@@ -139,11 +144,6 @@ end
 
 
 function _startround_prespawn(mode)
-	if(_match.live) then
-		_match.ttPlayers = player(0, "team1");
-		_match.ctPlayers = player(0, "team2");
-	end
-
 	if(_match.finished) then
 		_match.calculateStats();
 		_match.finished = false;
