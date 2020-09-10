@@ -66,12 +66,14 @@ function _endround(mode)
 		};
 
 		for _, id in pairs(_match.ttPlayers) do
+			_player[id].rounds = _player[id].rounds + 1;
 			dmgTable.roundDmg[id] = _player[id].roundDmg;
 			dmgTable.totalDmg[id] = _player[id].totalDmg;
 			msg2(id, _serverMsgs["info"].."Your damage: \169250250250(\169000225000".._player[id].roundDmg.."\169250250250 damage)");
 		end
 
 		for _, id in pairs(_match.ctPlayers) do
+			_player[id].rounds = _player[id].rounds + 1;
 			dmgTable.roundDmg[id] = _player[id].roundDmg;
 			dmgTable.totalDmg[id] = _player[id].totalDmg;
 			msg2(id, _serverMsgs["info"].."Your damage: \169250250250(\169000225000".._player[id].roundDmg.."\169250250250 damage)");

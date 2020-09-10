@@ -37,7 +37,7 @@ function Player:calculateWin()
 	local score = self.score * 0.3;
 	local assists = self.assists * 0.2;
 	local MVPs = self.MVP * 0.2;
+	self.ADR = self.totalDmg / self.rounds;
 	local ADR = self.ADR * 0.1;
-	local deaths = self.deaths * 0.15;
-	self.points = self.points + math.abs((score + assists + MVPs + ADR) - deaths);
+	self.points = self.points + math.abs((score + assists + MVPs + ADR));
 end
