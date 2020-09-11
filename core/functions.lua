@@ -1,17 +1,23 @@
+function tableMax(t, f)
+	local max = next(t, nil);
+	local maxVal = t[max] or 0;
+
+	for k, v in pairs(t) do
+		if(k ~= max and v ~= nil) then
+			if(v > maxVal) then
+				max = k;
+				maxVal = v;
+			end
+		end
+	end
+
+	return max;
+end
+
 function _match.getMVP(roundDmg, totalDmg)
-	local roundMVP = math.max(unpack(roundDmg));
-	local totalMVP = math.max(unpack(totalDmg));
-	local roundMVPId, totalMVPId;
-
-	for id, dmg in pairs(roundDmg) do
-		if(dmg == roundMVP) then roundMVPId = id; break; end
-	end
-
-	for id, dmg in pairs(totalDmg) do
-		if(dmg == totalMVP) then totalMVPId = id; break; end
-	end
-
-	return roundMVPId, totalMVPId;
+	local roundMVP = tableMax(roundDmg, "roundDmg");
+	local totalMVP = tableMax(totalDmg, "totalDmg");
+	return roundMVP, totalMVP;
 end
 
 function _match.reset()

@@ -56,7 +56,7 @@ _ranks = {
 	[4] = {
 		name = "Emerald";
 		tag = "\169033232002[Emerald]";
-		points = 1000;
+		points = 1001;
 	};
 
 	[5] = {

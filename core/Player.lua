@@ -15,7 +15,7 @@ Player = {
 
 	-- Saved for the player
 	rank = 3;
-	points = 0;
+	points = 1000;
 };
 
 function Player:new(object)
