@@ -9,6 +9,8 @@ function _join(id)
 		id = id;
 	});
 
+	_player[id]:loadRank();
+
 	msg2(id, _serverMsgs["info"].."Welcome to "..game("sv_name"));
 	msg2(id, _serverMsgs["info"].."Your rank is ".._ranks[_player[id].rank].tag);
 
@@ -32,14 +34,8 @@ end
 
 function _say(id, text)
 	if(text == "!startmix") then
-		local players = player(0, "table");
-		if(#players >= 10) then
-			_match.setLive();
-			return 1;
-		else
-			msg("There are not enough players");
-			return 1;
-		end
+		_match.setLive();
+		return 1;
 	end
 
 	msg(_chatColors[_player[id].team].._player[id].name.." ".._ranks[_player[id].rank].tag..": \169240240240"..text);

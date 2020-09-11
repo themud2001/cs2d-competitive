@@ -14,8 +14,8 @@ Player = {
 	matchPoints = 0;
 
 	-- Saved for the player
-	rank = 3;
-	points = 1000;
+	rank = 0;
+	points = 0;
 };
 
 function Player:new(object)
@@ -75,9 +75,18 @@ function Player:updateRank()
 	if(self.rank >= (#_ranks - 1)) then return; end
 	if(self.points >= _ranks[self.rank + 1].points) then
 		self.rank = self.rank + 1;
-		msg2(self.id, _serverMsgs["success"].."Congratulations! You ranked up to: ".._ranks[self.rank].tag);
+		msg2(self.id, _serverMsgs["success"].."Congratulations! You are promoted to: ".._ranks[self.rank].tag);
 	elseif(self.points < _ranks[self.rank].points) then
 		self.rank = self.rank - 1;
-		msg2(self.id, _serverMsgs["error"].."You deranked down to: ".._ranks[self.rank].tag);
+		msg2(self.id, _serverMsgs["error"].."You are demoted to: ".._ranks[self.rank].tag);
+	end
+end
+
+function Player:loadRank()
+	local file = io.open(scriptPath.."data/"..self.usgn..".txt", "r");
+	if(file) then
+		self.rank = tonumber(file:read());
+		self.points = tonumber(file:read());
+		file:close();
 	end
 end
