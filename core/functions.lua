@@ -24,6 +24,7 @@ function _match.reset()
 	_match.live = false;
 	_match.finished = false;
 	_match.half = 1;
+	parse("hudtxt 1 \"\" 400 20");
 end
 
 function _match.setLive()

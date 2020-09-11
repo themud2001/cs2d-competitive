@@ -134,6 +134,7 @@ function _startround(mode)
 			_player[id]:maintainStats();
 		end
 
+		parse("hudtxt 1 \"".._chatColors[2].."CT \169000225000".._match.ctRounds.."-".._match.ttRounds.._chatColors[1].." TT\" 400 20");
 		parse("setteamscores ".._match.ttRounds.." ".._match.ctRounds);
 	end
 end
