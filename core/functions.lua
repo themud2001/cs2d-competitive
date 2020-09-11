@@ -65,6 +65,7 @@ function _match.calculateWin()
 		_player[id]:calculateWin();
 		_player[id]:printStats();
 		_player[id]:updateRank();
+		_player[id]:saveRank();
 	end
 end
 
@@ -74,6 +75,7 @@ function _match.calculateLose()
 		_player[id]:calculateLose();
 		_player[id]:printStats();
 		_player[id]:updateRank();
+		_player[id]:saveRank();
 	end
 end
 

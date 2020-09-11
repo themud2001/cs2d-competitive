@@ -90,3 +90,10 @@ function Player:loadRank()
 		file:close();
 	end
 end
+
+function Player:saveRank()
+	local file = io.open(scriptPath.."data/"..self.usgn..".txt", "w+");
+	file:write(self.rank.."\n");
+	file:write(self.points);
+	file:close();
+end

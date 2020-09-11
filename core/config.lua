@@ -38,7 +38,7 @@ _ranks = {
 	[1] = {
 		name = "Bronze";
 		tag = "\169237098005[Bronze]";
-		points = 1;
+		points = 10;
 	};
 
 	[2] = {
@@ -50,7 +50,7 @@ _ranks = {
 	[3] = {
 		name = "Gold";
 		tag = "\169240210000[Gold]";
-		points = 1000;
+		points = 75;
 	};
 
 	[4] = {
