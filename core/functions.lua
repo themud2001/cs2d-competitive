@@ -8,7 +8,6 @@ function tableMax(t, f)
 			end
 		end
 	end
-
 	return max;
 end
 
@@ -28,7 +27,7 @@ function _match.reset()
 end
 
 function _match.setLive()
-	_match.printResetStats();
+	_match.resetPlayersStats();
 	_match.reset();
 	parse("mp_startmoney 800");
 	parse("sv_fow 1");
@@ -64,6 +63,8 @@ function _match.calculateWin()
 	local teamWon = (_match.teamWon == 1 and "1") or "2";
 	for _, id in pairs(player(0, "team"..teamWon)) do
 		_player[id]:calculateWin();
+		_player[id]:printStats();
+		_player[id]:updateRank();
 	end
 end
 
@@ -71,15 +72,13 @@ function _match.calculateLose()
 	local teamLost = (_match.teamWon == 1 and "2") or "1";
 	for _, id in pairs(player(0, "team"..teamLost)) do
 		_player[id]:calculateLose();
+		_player[id]:printStats();
+		_player[id]:updateRank();
 	end
 end
 
-function _match.printResetStats(mode)
+function _match.resetPlayersStats()
 	for _, id in pairs(player(0, "table")) do
-		if(mode == "all") then
-			_player[id]:printStats();
-			_player[id]:updateRank();
-		end
 		_player[id]:resetStats();
 	end
 end
