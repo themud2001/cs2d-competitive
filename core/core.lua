@@ -11,15 +11,14 @@ function _join(id)
 
 	_player[id]:loadRank();
 
-	msg2(id, _serverMsgs["info"].."Welcome to "..game("sv_name"));
-	msg2(id, _serverMsgs["info"].."Your rank is ".._ranks[_player[id].rank].tag);
-
 	if(_player[id].usgn == 0) then
 		msg2(id, _serverMsgs["error"].."You have to be logged in via USGN");
 		-- Debugging
 		_player[id].joinTeamAllowed = true;
 	else
 		_player[id].joinTeamAllowed = true;
+		msg2(id, _serverMsgs["info"].."Welcome to "..game("sv_name"));
+		msg2(id, _serverMsgs["info"].."Your rank is ".._ranks[_player[id].rank].tag);
 	end
 end
 
