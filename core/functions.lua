@@ -1,7 +1,5 @@
 function tableMax(t, f)
-	local max = next(t, nil);
-	local maxVal = t[max] or 0;
-
+	local max, maxVal = next(t, nil);
 	for k, v in pairs(t) do
 		if(k ~= max and v ~= nil) then
 			if(v > maxVal) then
