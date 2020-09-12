@@ -22,6 +22,7 @@ function _match.reset()
 	_match.ctRounds = 0;
 	_match.prelive = false;
 	_match.live = false;
+	_match.playoffs = false;
 	_match.finished = false;
 	_match.half = 1;
 	parse("hudtxt 1 \"\" 400 20");

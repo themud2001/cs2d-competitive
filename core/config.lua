@@ -6,10 +6,12 @@ _match = {
 	finished = false;
 	ttRounds = 0;
 	ctRounds = 0;
-	roundsLimit = 2;
+	roundsLimit = 1;
 	restartWait = 1;
 	half = 1;
 	teamWon = 0;
+	playoffs = false;
+	playoffsRoundsLimit = 3;
 	ttPlayers = {};
 	ctPlayers = {};
 }

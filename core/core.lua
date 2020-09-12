@@ -89,14 +89,28 @@ function _endround(mode)
 				_match.endFirstHalf();
 			end
 		else
-			if(_match.ttRounds == _match.roundsLimit and _match.ctRounds == _match.roundsLimit) then
-				msg("Draw");
-			elseif(_match.ttRounds == _match.roundsLimit + 1) then
-				_match.teamWon = 1;
-				_match.finished = true;
-			elseif(_match.ctRounds == _match.roundsLimit + 1) then
-				_match.teamWon = 2;
-				_match.finished = true;
+			if(_match.playoffs) then
+				if(_match.ttRounds == _match.roundsLimit + _match.playoffsRoundsLimit) then
+					_match.teamWon = 1;
+					_match.playoffs = false;
+					_match.finished = true;
+				elseif(_match.ctRounds == _match.roundsLimit + _match.playoffsRoundsLimit) then
+					_match.teamWon = 2;
+					_match.playoffs = false;
+					_match.finished = true;
+				end
+			else
+				if(_match.ttRounds == _match.roundsLimit and _match.ctRounds == _match.roundsLimit) then
+					_match.playoffs = true;
+					msg(_serverMsgs["info"].."Tough match! Prepare for the \169255200000playoffs");
+					msg(_serverMsgs["info"].."First team that gets to (\169255200000"..(_match.roundsLimit + _match.playoffsRoundsLimit).."\169250250250) rounds, wins");
+				elseif(_match.ttRounds == _match.roundsLimit + 1) then
+					_match.teamWon = 1;
+					_match.finished = true;
+				elseif(_match.ctRounds == _match.roundsLimit + 1) then
+					_match.teamWon = 2;
+					_match.finished = true;
+				end
 			end
 		end
 
@@ -137,7 +151,7 @@ function _startround(mode)
 		end
 
 		parse("hudtxt 1 \"".._chatColors[2].."CT \169000225000".._match.ctRounds.."-".._match.ttRounds.._chatColors[1].." TT\" 400 15");
-		parse("hudtxt 2 \""..((_match.half == 1 and "1st") or "2nd").." half\" 413 28 0 0 10");
+		parse("hudtxt 2 \""..((_match.playoffs and "Playoffs") or ((_match.half == 1 and "1st half") or "2nd half")).."\" 413 28 0 0 10");
 		parse("setteamscores ".._match.ttRounds.." ".._match.ctRounds);
 	end
 end
