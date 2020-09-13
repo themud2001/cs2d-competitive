@@ -172,3 +172,9 @@ function _kill(killer, victim, weapon, x, y, killerobject, assistant)
 		if(assistant ~= 0) then _player[assistant].assists = _player[assistant].assists + 1; end
 	end
 end
+
+function _leave(id)
+	if(_match.live) then
+		_player[id] = nil;
+	end
+end
