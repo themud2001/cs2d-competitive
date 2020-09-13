@@ -1,5 +1,4 @@
 Player = {
-	-- The values change every match
 	id = 1;
 	joinTeamAllowed = false;
 	team = 0;
@@ -13,7 +12,6 @@ Player = {
 	rounds = 0;
 	matchPoints = 0;
 
-	-- Saved for the player
 	rank = 0;
 	points = 0;
 };
