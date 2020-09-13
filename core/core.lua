@@ -15,7 +15,7 @@ function _join(id)
 
 	if(_player[id].usgn == 0) then
 		msg2(id, _serverMsgs["error"].."You have to be logged in via USGN");
-		_player[id].joinTeamAllowed = true; -- Testing
+		_player[id].joinTeamAllowed = false;
 	else
 		_player[id].joinTeamAllowed = true;
 		msg2(id, _serverMsgs["info"].."Welcome to "..game("sv_name"));
