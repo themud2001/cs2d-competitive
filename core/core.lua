@@ -15,7 +15,7 @@ function _join(id)
 
 	if(_player[id].usgn == 0) then
 		msg2(id, _serverMsgs["error"].."You have to be logged in via USGN");
-		_player[id].joinTeamAllowed = false;
+		_player[id].joinTeamAllowed = true; -- Testing
 	else
 		_player[id].joinTeamAllowed = true;
 		msg2(id, _serverMsgs["info"].."Welcome to "..game("sv_name"));
@@ -35,6 +35,9 @@ end
 function _say(id, text)
 	if(text == "!startmix") then
 		_match.setLive();
+		return 1;
+	elseif(text == "!rr") then
+		_match.restartRound();
 		return 1;
 	end
 

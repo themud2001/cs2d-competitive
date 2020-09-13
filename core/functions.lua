@@ -20,6 +20,8 @@ end
 function _match.reset()
 	_match.ttRounds = 0;
 	_match.ctRounds = 0;
+	_match.ttFirstHalfRounds = 0;
+	_match.ctFirstHalfRounds = 0;
 	_match.prelive = false;
 	_match.live = false;
 	_match.playoffs = false;
@@ -27,6 +29,12 @@ function _match.reset()
 	_match.half = 1;
 	parse("hudtxt 1 \"\" 400 20");
 	parse("hudtxt 2 \"\" 400 20");
+end
+
+function _match.restartRound()
+	_match.ttRounds = _match.ttFirstHalfRounds;
+	_match.ctRounds = _match.ctFirstHalfRounds;
+	parse("restart");
 end
 
 function _match.setLive()
@@ -57,6 +65,8 @@ end
 
 function _match.endFirstHalf()
 	_match.ttRounds, _match.ctRounds = _match.ctRounds, _match.ttRounds;
+	_match.ttFirstHalfRounds = _match.ttRounds;
+	_match.ctFirstHalfRounds = _match.ctRounds;
 	_match.switchPlayers();
 	_match.half = 2;
 	msg(_serverMsgs["info"].."Good half! The first half has ended with the score: \169000225000".._match.ctRounds.."-".._match.ttRounds);
