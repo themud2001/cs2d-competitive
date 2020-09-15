@@ -1,6 +1,7 @@
 _player = {};
 
 _match = {
+	teamsLocked = false;
 	prelive = false;
 	live = false;
 	finished = false;
