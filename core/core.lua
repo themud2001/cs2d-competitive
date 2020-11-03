@@ -6,17 +6,17 @@ end
 
 function _join(id)
 	_player[id] = Player:new({
+		id = id;
 		name = player(id, "name");
 		usgn = player(id, "usgn");
-		id = id;
+		steamid = player(id, "steamid");
 	});
 
-	_player[id]:loadRank();
-
-	if(_player[id].usgn == 0) then
-		msg2(id, _serverMsgs["error"].."You have to be logged in via USGN");
+	if(_player[id].usgn == 0 and _player[id].steamid == "0") then
+		msg2(id, _serverMsgs["error"].."You have to be logged in via USGN or Steam");
 		_player[id].joinTeamAllowed = false;
 	else
+		_player[id]:loadRank();
 		_player[id].joinTeamAllowed = true;
 		msg2(id, _serverMsgs["info"].."Welcome to "..game("sv_name"));
 		msg2(id, _serverMsgs["info"].."Your rank is ".._ranks[_player[id].rank].tag);
@@ -29,39 +29,12 @@ function _team(id, team)
 		return 1;
 	end
 
-	if(_match.teamsLocked) then
-		if(_player[id].team == 0) then
-			msg2(id, _serverMsgs["error"].."Teams are locked");
-			return 1;
-		end
-	end
-
 	_player[id].team = team;
 end
 
 -- Testing, temporary
 
 function _say(id, text)
-	if(_player[id].usgn == 137843) then
-		if(text == "!startmix") then
-			_match.setLive();
-			msg(_serverMsgs["info"].."Player ".._chatColors[_player[id].team].._player[id].name.."\169250250250 started a match");
-			return 1;
-		elseif(text == "!rr") then
-			_match.restartRound();
-			msg(_serverMsgs["info"].."Player ".._chatColors[_player[id].team].._player[id].name.."\169250250250 restarted the round");
-			return 1;
-		elseif(text == "!lock") then
-			_match.teamsLocked = true;
-			msg(_serverMsgs["info"].."Player ".._chatColors[_player[id].team].._player[id].name.."\169250250250 locked the teams");
-			return 1;
-		elseif(text == "!unlock") then
-			_match.teamsLocked = false;
-			msg(_serverMsgs["info"].."Player ".._chatColors[_player[id].team].._player[id].name.."\169250250250 unlocked the teams");
-			return 1;
-		end
-	end
-
 	msg(_chatColors[_player[id].team].._player[id].name.." ".._ranks[_player[id].rank].tag..": \169240240240"..text);
 	return 1;
 end

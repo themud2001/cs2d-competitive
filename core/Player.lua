@@ -1,19 +1,19 @@
 Player = {
-	id = 1;
 	joinTeamAllowed = false;
 	team = 0;
+
 	score = 0;
 	deaths = 0;
 	assists = 0;
-	roundDmg = 0;
-	totalDmg = 0;
 	ADR = 0;
 	MVP = 0;
-	rounds = 0;
-	matchPoints = 0;
-
 	rank = 0;
 	points = 0;
+
+	rounds = 0;
+	matchPoints = 0;
+	roundDmg = 0;
+	totalDmg = 0;
 };
 
 function Player:new(object)
@@ -81,8 +81,13 @@ function Player:updateRank()
 end
 
 function Player:loadRank()
-	local file = io.open(scriptPath.."data/"..self.usgn..".txt", "r");
+	local file = io.open(scriptPath.."data/"..(self.usgn or self.steamid)..".txt", "r");
 	if(file) then
+		self.score = tonumber(file:read());
+		self.deaths = tonumber(file:read());
+		self.assists = tonumber(file:read());
+		self.ADR = tonumber(file:read());
+		self.MVP = tonumber(file:read());
 		self.rank = tonumber(file:read());
 		self.points = tonumber(file:read());
 		file:close();
@@ -90,7 +95,12 @@ function Player:loadRank()
 end
 
 function Player:saveRank()
-	local file = io.open(scriptPath.."data/"..self.usgn..".txt", "w+");
+	local file = io.open(scriptPath.."data/"..(self.usgn or self.steamid)..".txt", "w+");
+	file:write(self.score.."\n");
+	file:write(self.deaths.."\n");
+	file:write(self.assists.."\n");
+	file:write(self.ADR.."\n");
+	file:write(self.MVP.."\n");
 	file:write(self.rank.."\n");
 	file:write(self.points);
 	file:close();
