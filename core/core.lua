@@ -46,112 +46,64 @@ function _name(id, old, new)
 end
 
 function _endround(mode)
-	if(_match.live) then
-		if(mode == 3 or mode == 4 or mode == 5) then return; end
+	if(mode == 3 or mode == 4 or mode == 5) then return; end
 
-		if(mode == 1 or mode == 20) then
-			_match.ttRounds = _match.ttRounds + 1;
-		else
-			_match.ctRounds = _match.ctRounds + 1;
-		end
-
-		local dmgTable = {
-			roundDmg = {};
-			totalDmg = {};
-		};
-
-		for _, id in pairs(_match.ttPlayers) do
-			_player[id].rounds = _player[id].rounds + 1;
-			dmgTable.roundDmg[id] = _player[id].roundDmg;
-			dmgTable.totalDmg[id] = _player[id].totalDmg;
-			msg2(id, _serverMsgs["info"].."Your damage: \169250250250(\169000225000".._player[id].roundDmg.."\169250250250 damage)");
-		end
-
-		for _, id in pairs(_match.ctPlayers) do
-			_player[id].rounds = _player[id].rounds + 1;
-			dmgTable.roundDmg[id] = _player[id].roundDmg;
-			dmgTable.totalDmg[id] = _player[id].totalDmg;
-			msg2(id, _serverMsgs["info"].."Your damage: \169250250250(\169000225000".._player[id].roundDmg.."\169250250250 damage)");
-		end
-
-		local roundMVP, totalMVP = _match.getMVP(dmgTable.roundDmg, dmgTable.totalDmg);
-
-		if(_player[roundMVP].roundDmg > 0) then
-			_player[roundMVP].MVP = _player[roundMVP].MVP + 1;
-			msg(_serverMsgs["info"].."Highest damage: ".._chatColors[_player[roundMVP].team].._player[roundMVP].name.."\169250250250 (\169000225000".._player[roundMVP].roundDmg.."\169250250250 damage)");
-			msg(_serverMsgs["info"].."Highest total damage: ".._chatColors[_player[totalMVP].team].._player[totalMVP].name.."\169250250250 (\169000225000".._player[totalMVP].totalDmg.."\169250250250 damage)");
-		end
-
-		if(_match.half == 1) then
-			if(_match.ttRounds + _match.ctRounds == _match.roundsLimit) then
-				_match.endFirstHalf();
-			end
-		else
-			if(_match.playoffs) then
-				if(_match.ttRounds == _match.roundsLimit + _match.playoffsRoundsLimit) then
-					_match.teamWon = 1;
-					_match.playoffs = false;
-					_match.finished = true;
-				elseif(_match.ctRounds == _match.roundsLimit + _match.playoffsRoundsLimit) then
-					_match.teamWon = 2;
-					_match.playoffs = false;
-					_match.finished = true;
-				end
-			else
-				if(_match.ttRounds == _match.roundsLimit and _match.ctRounds == _match.roundsLimit) then
-					_match.playoffs = true;
-					msg(_serverMsgs["info"].."Tough match! Prepare for the \169255200000playoffs");
-					msg(_serverMsgs["info"].."First team that gets to (\169255200000"..(_match.roundsLimit + _match.playoffsRoundsLimit).."\169250250250) rounds, wins");
-				elseif(_match.ttRounds == _match.roundsLimit + 1) then
-					_match.teamWon = 1;
-					_match.finished = true;
-				elseif(_match.ctRounds == _match.roundsLimit + 1) then
-					_match.teamWon = 2;
-					_match.finished = true;
-				end
-			end
-		end
-
-		if(_match.finished) then
-			msg(_serverMsgs["info"].."Good game! The match has finished with the score: \169000225000".._match.ctRounds.."-".._match.ttRounds);
-			msg(_serverMsgs["info"].."The winning team is: ".._chatColors[_match.teamWon]..((_match.teamWon == 1 and "TT") or "CT"));
-		end
+	if(mode == 1 or mode == 10 or mode == 12 or mode == 20 or mode == 30 or mode == 40 or mode == 50 or mode == 60) then
+		_match.ttRounds = _match.ttRounds + 1;
+	else
+		_match.ctRounds = _match.ctRounds + 1;
 	end
+
+	local ttPlayers = player(0, "team1");
+	local ctPlayers = player(0, "team2");
+	local roundDmg = {};
+	local totalDmg = {};
+
+	for _, id in pairs(ttPlayers) do
+		_player[id].rounds = _player[id].rounds + 1;
+		roundDmg[id] = _player[id].roundDmg;
+		totalDmg[id] = _player[id].totalDmg;
+		msg2(id, _serverMsgs["info"].."Your damage: \169250250250(\169000225000".._player[id].roundDmg.."\169250250250 damage)");
+	end
+
+	for _, id in pairs(ctPlayers) do
+		_player[id].rounds = _player[id].rounds + 1;
+		roundDmg[id] = _player[id].roundDmg;
+		totalDmg[id] = _player[id].totalDmg;
+		msg2(id, _serverMsgs["info"].."Your damage: \169250250250(\169000225000".._player[id].roundDmg.."\169250250250 damage)");
+	end
+
+	local roundMVP, totalMVP = _match.getMVP(roundDmg, totalDmg);
+
+	if(_player[roundMVP].roundDmg > 0) then
+		_player[roundMVP].MVP = _player[roundMVP].MVP + 1;
+		msg(_serverMsgs["info"].."Highest damage: ".._chatColors[_player[roundMVP].team].._player[roundMVP].name.."\169250250250 (\169000225000".._player[roundMVP].roundDmg.."\169250250250 damage)");	
+	end
+
+	msg(_serverMsgs["info"].."Highest total damage: ".._chatColors[_player[totalMVP].team].._player[totalMVP].name.."\169250250250 (\169000225000".._player[totalMVP].totalDmg.."\169250250250 damage)");
 end
 
 function _hit(id, source, weapon, hpdmg, apdmg, rawdmg)
-	if(_match.live) then
-		if(_player[source].team ~= _player[id].team) then
-			_player[source].roundDmg = _player[source].roundDmg + hpdmg;
-			_player[source].totalDmg = _player[source].totalDmg + hpdmg;
-		end
+	if(_player[source].team ~= _player[id].team) then
+		_player[source].roundDmg = _player[source].roundDmg + hpdmg;
+		_player[source].totalDmg = _player[source].totalDmg + hpdmg;
 	end
 end
 
 function _startround(mode)
-	if(_match.prelive) then
-		_match.live = true;
-		_match.prelive = false;
+	local ttPlayers = player(0, "team1");
+	local ctPlayers = player(0, "team2");
+
+	for _, id in pairs(ttPlayers) do
+		_player[id].roundDmg = 0;
 	end
 
-	if(_match.live) then
-		_match.ttPlayers = player(0, "team1");
-		_match.ctPlayers = player(0, "team2");
-
-		for _, id in pairs(_match.ttPlayers) do
-			_player[id].roundDmg = 0;
-			_player[id]:maintainStats();
-		end
-
-		for _, id in pairs(_match.ctPlayers) do
-			_player[id].roundDmg = 0;
-			_player[id]:maintainStats();
-		end
-
-		parse("hudtxt 1 \"".._chatColors[2].."CT \169000225000".._match.ctRounds.."-".._match.ttRounds.._chatColors[1].." TT\" 400 15");
-		parse("hudtxt 2 \""..((_match.playoffs and "Playoffs") or ((_match.half == 1 and "1st half") or "2nd half")).."\" 413 28 0 0 10");
-		parse("setteamscores ".._match.ttRounds.." ".._match.ctRounds);
+	for _, id in pairs(ctPlayers) do
+		_player[id].roundDmg = 0;
 	end
+
+	parse("hudtxt 1 \"".._chatColors[2].."CT \169000225000".._match.ctRounds.."-".._match.ttRounds.._chatColors[1].." TT\" 400 15");
+	parse("setteamscores ".._match.ttRounds.." ".._match.ctRounds);
 end
 
 

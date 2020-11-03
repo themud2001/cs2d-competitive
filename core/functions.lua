@@ -1,4 +1,4 @@
-function tableMax(t, f)
+function tableMax(t)
 	local max, maxVal = next(t, nil);
 	for k, v in pairs(t) do
 		if(k ~= max and v ~= nil) then
@@ -12,8 +12,8 @@ function tableMax(t, f)
 end
 
 function _match.getMVP(roundDmg, totalDmg)
-	local roundMVP = tableMax(roundDmg, "roundDmg");
-	local totalMVP = tableMax(totalDmg, "totalDmg");
+	local roundMVP = tableMax(roundDmg);
+	local totalMVP = tableMax(totalDmg);
 	return roundMVP, totalMVP;
 end
 

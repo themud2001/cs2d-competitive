@@ -11,7 +11,6 @@ Player = {
 	points = 0;
 
 	rounds = 0;
-	matchPoints = 0;
 	roundDmg = 0;
 	totalDmg = 0;
 };
@@ -62,11 +61,6 @@ function Player:printStats()
 	msg2(self.id, _chatColors[0].."ADR: \169000225000"..self.ADR);
 	msg2(self.id, _chatColors[0].."Rounds played: \169000225000"..self.rounds);
 	msg2(self.id, _chatColors[0].."Points: "..((_player[self.id].team == _match.teamWon and "\169000225000+") or "\169240000000-")..self.matchPoints);
-end
-
-function Player:maintainStats()
-	parse("setscore "..self.id.." "..self.score);
-	parse("setdeaths "..self.id.." "..self.deaths);
 end
 
 function Player:updateRank()

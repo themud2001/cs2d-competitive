@@ -1,20 +1,8 @@
 _player = {};
 
 _match = {
-	teamsLocked = false;
-	prelive = false;
-	live = false;
-	finished = false;
 	ttRounds = 0;
 	ctRounds = 0;
-	ttFirstHalfRounds = 0;
-	ctFirstHalfRounds = 0;
-	roundsLimit = 15;
-	restartWait = 10;
-	half = 1;
-	teamWon = 0;
-	playoffs = false;
-	playoffsRoundsLimit = 3;
 	ttPlayers = {};
 	ctPlayers = {};
 }
