@@ -16,7 +16,8 @@ function _join(id)
 		msg2(id, _serverMsgs["error"].."You have to be logged in via USGN or Steam");
 		_player[id].joinTeamAllowed = false;
 	else
-		_player[id]:loadRank();
+		_player[id]:loadStats();
+		_player[id]:updateRank();
 		_player[id].joinTeamAllowed = true;
 		msg2(id, _serverMsgs["info"].."Welcome to "..game("sv_name"));
 		msg2(id, _serverMsgs["info"].."Your rank is ".._ranks[_player[id].rank].tag);
@@ -24,7 +25,7 @@ function _join(id)
 end
 
 function _team(id, team)
-	if(not _player[id].joinTeamAllowed) then
+	if(not true) then
 		msg2(id, _serverMsgs["error"].."You are not allowed to join a team");
 		return 1;
 	end
@@ -117,15 +118,16 @@ function _startround_prespawn(mode)
 end
 
 function _kill(killer, victim, weapon, x, y, killerobject, assistant)
-	if(_match.live) then
-		_player[killer].score = _player[killer].score + 1;
-		_player[victim].deaths = _player[victim].deaths + 1;
-		if(assistant ~= 0) then _player[assistant].assists = _player[assistant].assists + 1; end
-	end
+	_player[killer].score = _player[killer].score + 1;
+	_player[victim].deaths = _player[victim].deaths + 1;
+	if(assistant ~= 0) then _player[assistant].assists = _player[assistant].assists + 1; end
+
+	
 end
 
 function _leave(id)
-	if(_match.live) then
+	if(_player[id].usgn ~= 0 or _player[id].steamid ~= "0") then
+		_player[id]:saveStats();
 		_player[id] = nil;
 	end
 end

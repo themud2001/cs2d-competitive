@@ -34,7 +34,7 @@ function Player:resetStats()
 	self.totalDmg = 0;
 end
 
-function Player:calculateWin()
+function Player:calculateKill()
 	local score = self.score * 0.3;
 	local assists = self.assists * 0.2;
 	local MVPs = self.MVP * 0.2;
@@ -74,7 +74,7 @@ function Player:updateRank()
 	end
 end
 
-function Player:loadRank()
+function Player:loadStats()
 	local file = io.open(scriptPath.."data/"..(self.usgn or self.steamid)..".txt", "r");
 	if(file) then
 		self.score = tonumber(file:read());
@@ -88,7 +88,7 @@ function Player:loadRank()
 	end
 end
 
-function Player:saveRank()
+function Player:saveStats()
 	local file = io.open(scriptPath.."data/"..(self.usgn or self.steamid)..".txt", "w+");
 	file:write(self.score.."\n");
 	file:write(self.deaths.."\n");
