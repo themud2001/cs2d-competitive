@@ -11,8 +11,7 @@ function tableMax(t)
 	return max;
 end
 
-function _match.getMVP(roundDmg, totalDmg)
+function _match.getMVP(roundDmg)
 	local roundMVP = tableMax(roundDmg);
-	local totalMVP = tableMax(totalDmg);
-	return roundMVP, totalMVP;
+	return roundMVP;
 end

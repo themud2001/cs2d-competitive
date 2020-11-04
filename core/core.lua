@@ -50,39 +50,28 @@ end
 function _endround(mode)
 	if(mode == 3 or mode == 4 or mode == 5) then return; end
 
-	if(mode == 1 or mode == 10 or mode == 12 or mode == 20 or mode == 30 or mode == 40 or mode == 50 or mode == 60) then
-		_match.ttRounds = _match.ttRounds + 1;
-	else
-		_match.ctRounds = _match.ctRounds + 1;
-	end
-
 	local ttPlayers = player(0, "team1");
 	local ctPlayers = player(0, "team2");
 	local roundDmg = {};
-	local totalDmg = {};
 
 	for _, id in pairs(ttPlayers) do
 		_player[id].rounds = _player[id].rounds + 1;
 		roundDmg[id] = _player[id].roundDmg;
-		totalDmg[id] = _player[id].totalDmg;
 		msg2(id, _serverMsgs["info"].."Your damage: \169250250250(\169000225000".._player[id].roundDmg.."\169250250250 damage)");
 	end
 
 	for _, id in pairs(ctPlayers) do
 		_player[id].rounds = _player[id].rounds + 1;
 		roundDmg[id] = _player[id].roundDmg;
-		totalDmg[id] = _player[id].totalDmg;
 		msg2(id, _serverMsgs["info"].."Your damage: \169250250250(\169000225000".._player[id].roundDmg.."\169250250250 damage)");
 	end
 
-	local roundMVP, totalMVP = _match.getMVP(roundDmg, totalDmg);
+	local roundMVP = _match.getMVP(roundDmg);
 
 	if(_player[roundMVP].roundDmg > 0) then
 		_player[roundMVP].MVP = _player[roundMVP].MVP + 1;
 		msg(_serverMsgs["info"].."Highest damage: ".._chatColors[_player[roundMVP].team].._player[roundMVP].name.."\169250250250 (\169000225000".._player[roundMVP].roundDmg.."\169250250250 damage)");	
 	end
-
-	msg(_serverMsgs["info"].."Highest total damage: ".._chatColors[_player[totalMVP].team].._player[totalMVP].name.."\169250250250 (\169000225000".._player[totalMVP].totalDmg.."\169250250250 damage)");
 end
 
 function _hit(id, source, weapon, hpdmg, apdmg, rawdmg)
@@ -103,9 +92,6 @@ function _startround(mode)
 	for _, id in pairs(ctPlayers) do
 		_player[id].roundDmg = 0;
 	end
-
-	parse("hudtxt 1 \"".._chatColors[2].."CT \169000225000".._match.ctRounds.."-".._match.ttRounds.._chatColors[1].." TT\" 400 15");
-	parse("setteamscores ".._match.ttRounds.." ".._match.ctRounds);
 end
 
 
