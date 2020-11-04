@@ -34,6 +34,11 @@ function _team(id, team)
 end
 
 function _say(id, text)
+	if(text == "!stats") then
+		_player[id]:printStats();
+		return 1;
+	end
+
 	msg(_chatColors[_player[id].team].._player[id].name.." ".._ranks[_player[id].rank].tag..": \169240240240"..text);
 	return 1;
 end
