@@ -33,14 +33,10 @@ function _team(id, team)
 	_player[id].team = team;
 end
 
--- Testing, temporary
-
 function _say(id, text)
 	msg(_chatColors[_player[id].team].._player[id].name.." ".._ranks[_player[id].rank].tag..": \169240240240"..text);
 	return 1;
 end
-
--- Testing, temporary
 
 function _name(id, old, new)
 	_player[id].name = new;
@@ -109,11 +105,15 @@ end
 
 
 function _startround_prespawn(mode)
-	if(_match.finished) then
-		_match.calculateWin();
-		_match.calculateLose();
-		_match.resetPlayersStats();
-		_match.reset();
+	local ttPlayers = player(0, "team1");
+	local ctPlayers = player(0, "team2");
+
+	for _, id in pairs(ttPlayers) do
+		_player[id].updateRank();
+	end
+
+	for _, id in pairs(ctPlayers) do
+		_player[id].updateRank();
 	end
 end
 
@@ -122,7 +122,8 @@ function _kill(killer, victim, weapon, x, y, killerobject, assistant)
 	_player[victim].deaths = _player[victim].deaths + 1;
 	if(assistant ~= 0) then _player[assistant].assists = _player[assistant].assists + 1; end
 
-	
+	_player[killer]:calculateKill(victim);
+	_player[victim]:calculateDeath(killer);
 end
 
 function _leave(id)

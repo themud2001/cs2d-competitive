@@ -34,21 +34,34 @@ function Player:resetStats()
 	self.totalDmg = 0;
 end
 
-function Player:calculateKill()
-	local score = self.score * 0.3;
-	local assists = self.assists * 0.2;
-	local MVPs = self.MVP * 0.2;
-	self.ADR = self.totalDmg / self.rounds;
-	local ADR = self.ADR * 0.1;
-	self.matchPoints = (score + assists + MVPs + ADR);
-	self.points = self.points + self.matchPoints;
+function Player:calculateKill(killed)
+	local deltaRank;
+	local points;
+
+	if(self.rank >= _player[killed].rank) then
+		deltaRank = (self.rank - _player[killed].rank) or 1;
+		points = (_ranks[self.rank].winPoints / deltaRank);
+	else
+		deltaRank = _player[killed].rank - self.rank;
+		points = _ranks[self.rank].winPoints + (10 * deltaRank);
+	end
+
+	self.points = self.points + points;
 end
 
-function Player:calculateLose()
-	local deaths = self.deaths * 0.9;
-	local bonus = (self.score + self.assists + self.MVP + self.ADR) * 0.05;
-	self.matchPoints = deaths + 10 - bonus;
-	self.points = self.points - self.matchPoints;
+function Player:calculateDeath(killer)
+	local deltaRank;
+	local points;
+
+	if(self.rank >= _player[killer].rank) then
+		deltaRank = (self.rank - _player[killer].rank) or 1;
+		points = _ranks[self.rank].losePoints + (5 * deltaRank);
+	else
+		deltaRank = _player[killer].rank - self.rank;
+		points = _ranks[self.rank].losePoints - (7 * deltaRank);
+	end
+
+	self.points = self.points - points;
 	if(self.points <= 0) then self.points = 0; end
 end
 

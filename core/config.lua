@@ -24,53 +24,71 @@ _ranks = {
 		name = "Iron";
 		tag = "\169121085072[Iron]";
 		points = 0;
+		winPoints = 120;
+		losePoints = 80;
 	};
 
 	[1] = {
 		name = "Bronze";
 		tag = "\169237098005[Bronze]";
-		points = 75;
+		points = 300;
+		winPoints = 115;
+		losePoints = 85;
 	};
 
 	[2] = {
 		name = "Silver";
 		tag = "\169130130130[Silver]";
-		points = 175;
+		points = 700;
+		winPoints = 110;
+		losePoints = 90;
 	};
 
 	[3] = {
 		name = "Gold";
 		tag = "\169240210000[Gold]";
-		points = 300;
+		points = 1100;
+		winPoints = 100;
+		losePoints = 95;
 	};
 
 	[4] = {
 		name = "Emerald";
 		tag = "\169033232002[Emerald]";
-		points = 450;
+		points = 1650;
+		winPoints = 90;
+		losePoints = 110;
 	};
 
 	[5] = {
 		name = "Diamond";
 		tag = "\169000210252[Diamond]";
-		points = 625;
+		points = 2150;
+		winPoints = 85;
+		losePoints = 110;
 	};
 
 	[6] = {
 		name = "Guardian";
 		tag = "\169163000205[Guardian]";
-		points = 800;
+		points = 2650;
+		winPoints = 80;
+		losePoints = 115;
 	};
 
 	[7] = {
 		name = "Supreme";
 		tag = "\169000150255[S\169000125255u\169000100255p\169000080255r\169000065255e\169000035255m\169000000255e]";
-		points = 975;
+		points = 3250;
+		winPoints = 75;
+		losePoints = 115;
 	};
 
 	[8] = {
 		name = "Overlord";
 		tag = "\169000000000[Overlord]";
-		points = 1150;
+		points = 3900;
+		winPoints = 65;
+		losePoints = 120;
 	};
 };
