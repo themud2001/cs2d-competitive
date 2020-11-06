@@ -14,7 +14,7 @@ function _join(id)
 
 	if(_player[id].usgn == 0 and _player[id].steamid == "0") then
 		msg2(id, _serverMsgs["error"].."You have to be logged in via USGN or Steam");
-		_player[id].joinTeamAllowed = true;
+		_player[id].joinTeamAllowed = false;
 	else
 		_player[id]:loadStats();
 		_player[id]:updateRank();
