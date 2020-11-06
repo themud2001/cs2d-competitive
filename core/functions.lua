@@ -1,6 +1,6 @@
-function tableMax(t, f)
-	local max, maxVal = next(t, nil);
-	for k, v in pairs(t) do
+function tableMax(table)
+	local max, maxVal = next(table, nil);
+	for k, v in pairs(table) do
 		if(k ~= max and v ~= nil) then
 			if(v > maxVal) then
 				max = k;
@@ -11,89 +11,24 @@ function tableMax(t, f)
 	return max;
 end
 
-function _match.getMVP(roundDmg, totalDmg)
-	local roundMVP = tableMax(roundDmg, "roundDmg");
-	local totalMVP = tableMax(totalDmg, "totalDmg");
-	return roundMVP, totalMVP;
-end
-
-function _match.reset()
-	_match.ttRounds = 0;
-	_match.ctRounds = 0;
-	_match.ttFirstHalfRounds = 0;
-	_match.ctFirstHalfRounds = 0;
-	_match.prelive = false;
-	_match.live = false;
-	_match.playoffs = false;
-	_match.finished = false;
-	_match.half = 1;
-	parse("hudtxt 1 \"\" 400 20");
-	parse("hudtxt 2 \"\" 400 20");
-end
-
-function _match.restartRound()
-	_match.ttRounds = _match.ttFirstHalfRounds;
-	_match.ctRounds = _match.ctFirstHalfRounds;
-	parse("restart");
-end
-
-function _match.setLive()
-	_match.resetPlayersStats();
-	_match.reset();
-	parse("mp_startmoney 800");
-	parse("sv_fow 1");
-	parse("mp_roundtime 2");
-	parse("mp_freezetime 5");
-	parse("mp_lagcompensation 2");
-	parse("mp_autoteambalance 0");
-	parse("mp_unbuyable \"Tactical Shield, AWP, SG552, Aug, Scout, G3SG1, SG550\"");
-	parse("restart ".._match.restartWait);
-	_match.prelive = true;
-	msg(_serverMsgs["info"].."Good luck & have fun!");
-	msg(_serverMsgs["info"].."The match is starting in ".._match.restartWait.." seconds...");
-end
-
-function _match.switchPlayers()
-	for _, id in pairs(_match.ttPlayers) do
-		parse("makect "..id);
+function splitText(text)
+	local tempTable = {};
+	for value in text:gmatch("[^%s]+") do
+		table.insert(tempTable, value);
 	end
 
-	for _, id in pairs(_match.ctPlayers) do
-		parse("maket "..id);
-	end
+	return tempTable;
 end
 
-function _match.endFirstHalf()
-	_match.ttRounds, _match.ctRounds = _match.ctRounds, _match.ttRounds;
-	_match.ttFirstHalfRounds = _match.ttRounds;
-	_match.ctFirstHalfRounds = _match.ctRounds;
-	_match.switchPlayers();
-	_match.half = 2;
-	msg(_serverMsgs["info"].."Good half! The first half has ended with the score: \169000225000".._match.ctRounds.."-".._match.ttRounds);
+function getMVP(roundDmg)
+	local roundMVP = tableMax(roundDmg);
+	return roundMVP;
 end
 
-function _match.calculateWin()
-	local teamWon = (_match.teamWon == 1 and "1") or "2";
-	for _, id in pairs(player(0, "team"..teamWon)) do
-		_player[id]:calculateWin();
-		_player[id]:printStats();
-		_player[id]:updateRank();
-		_player[id]:saveRank();
-	end
+function updateRankHudtxt(id)
+	parse("hudtxt2 "..id.." 1 \"\169250250250Rank: ".._ranks[_player[id].rank].tag.."\" 8 165");
 end
 
-function _match.calculateLose()
-	local teamLost = (_match.teamWon == 1 and "2") or "1";
-	for _, id in pairs(player(0, "team"..teamLost)) do
-		_player[id]:calculateLose();
-		_player[id]:printStats();
-		_player[id]:updateRank();
-		_player[id]:saveRank();
-	end
-end
-
-function _match.resetPlayersStats()
-	for _, id in pairs(player(0, "table")) do
-		_player[id]:resetStats();
-	end
+function updatePointsHudtxt(id)
+	parse("hudtxt2 "..id.." 2 \"\169250250250Points: \169000225000"..math.floor(_player[id].points).."\" 8 185");
 end

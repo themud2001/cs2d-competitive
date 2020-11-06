@@ -1,24 +1,5 @@
 _player = {};
 
-_match = {
-	teamsLocked = false;
-	prelive = false;
-	live = false;
-	finished = false;
-	ttRounds = 0;
-	ctRounds = 0;
-	ttFirstHalfRounds = 0;
-	ctFirstHalfRounds = 0;
-	roundsLimit = 15;
-	restartWait = 10;
-	half = 1;
-	teamWon = 0;
-	playoffs = false;
-	playoffsRoundsLimit = 3;
-	ttPlayers = {};
-	ctPlayers = {};
-}
-
 _hooks = {"join", "team", "say", "name", "endround", "hit", "startround", "startround_prespawn", "kill", "leave"};
 
 _serverMsgs = {
@@ -38,53 +19,157 @@ _ranks = {
 		name = "Iron";
 		tag = "\169121085072[Iron]";
 		points = 0;
+		winPoints = 120;
+		losePoints = 80;
 	};
 
 	[1] = {
 		name = "Bronze";
 		tag = "\169237098005[Bronze]";
-		points = 75;
+		points = 300;
+		winPoints = 115;
+		losePoints = 85;
 	};
 
 	[2] = {
 		name = "Silver";
 		tag = "\169130130130[Silver]";
-		points = 175;
+		points = 700;
+		winPoints = 110;
+		losePoints = 90;
 	};
 
 	[3] = {
 		name = "Gold";
 		tag = "\169240210000[Gold]";
-		points = 300;
+		points = 1100;
+		winPoints = 100;
+		losePoints = 95;
 	};
 
 	[4] = {
 		name = "Emerald";
 		tag = "\169033232002[Emerald]";
-		points = 450;
+		points = 1650;
+		winPoints = 90;
+		losePoints = 110;
 	};
 
 	[5] = {
 		name = "Diamond";
 		tag = "\169000210252[Diamond]";
-		points = 625;
+		points = 2150;
+		winPoints = 85;
+		losePoints = 110;
 	};
 
 	[6] = {
 		name = "Guardian";
 		tag = "\169163000205[Guardian]";
-		points = 800;
+		points = 2650;
+		winPoints = 80;
+		losePoints = 115;
 	};
 
 	[7] = {
 		name = "Supreme";
 		tag = "\169000150255[S\169000125255u\169000100255p\169000080255r\169000065255e\169000035255m\169000000255e]";
-		points = 975;
+		points = 3250;
+		winPoints = 75;
+		losePoints = 115;
 	};
 
 	[8] = {
 		name = "Overlord";
 		tag = "\169000000000[Overlord]";
-		points = 1150;
+		points = 3900;
+		winPoints = 65;
+		losePoints = 120;
+	};
+};
+
+_cmds = {
+	prefix = "!";
+
+	admin = {
+		[0] = {
+			name = "kick";
+			usage = "!kick <id>";
+			execute = function(id, cmd)
+				cmd[2] = tonumber(cmd[2]);
+				if(not cmd[2] or not player(cmd[2], "exists")) then
+					msg2(id, _serverMsgs["error"].."The player doesn\'t exist");
+				elseif(cmd[2] == id) then
+					msg2(id, _serverMsgs["error"].."You can\'t kick yourself");
+				else
+					msg(_serverMsgs["info"].."Player \169000225000"..player(cmd[2], "name").." \169250250250was kicked by \169000225000"..player(id, "name"));
+					parse("kick "..cmd[2].." Kicked by "..player(id, "name"));
+				end
+			end;
+		};
+
+		[1] = {
+			name = "ban";
+			usage = "!ban <id>";
+			execute = function(id, cmd)
+				cmd[2] = tonumber(cmd[2]);
+				if(not cmd[2] or not player(cmd[2], "exists")) then
+					msg2(id, _serverMsgs["error"].."The player doesn\'t exist");
+				elseif(cmd[2] == id) then
+					msg2(id, _serverMsgs["error"].."You can\'t ban yourself");
+				else
+					msg(_serverMsgs["info"].."Player \169000225000"..player(cmd[2], "name").." \169250250250was banned by \169000225000"..player(id, "name"));
+					parse("banip "..cmd[2]);
+				end
+			end;
+		};
+
+		[2] = {
+			name = "mute";
+			usage = "!mute <id>";
+			execute = function(id, cmd)
+				cmd[2] = tonumber(cmd[2]);
+				if(not cmd[2] or not player(cmd[2], "exists")) then
+					msg2(id, _serverMsgs["error"].."The player doesn\'t exist");
+				elseif(cmd[2] == id) then
+					msg2(id, _serverMsgs["error"].."You can\'t mute yourself");
+				elseif(_player[cmd[2]].isMuted ~= 0) then
+					msg2(id, _serverMsgs["error"].."The player is already muted");
+				else
+					msg(_serverMsgs["info"].."Player \169000225000"..player(cmd[2], "name").." \169250250250was muted by \169000225000"..player(id, "name"));
+					_player[cmd[2]].isMuted = 1;
+				end
+			end;
+		};
+
+		[3] = {
+			name = "unmute";
+			usage = "!unmute <id>";
+			execute = function(id, cmd)
+				cmd[2] = tonumber(cmd[2]);
+				if(not cmd[2] or not player(cmd[2], "exists")) then
+					msg2(id, _serverMsgs["error"].."The player doesn\'t exist");
+				elseif(_player[cmd[2]].isMuted == 0) then
+					msg2(id, _serverMsgs["error"].."The player is not muted");
+				else
+					msg(_serverMsgs["info"].."Player \169000225000"..player(cmd[2], "name").." \169250250250was unmuted by \169000225000"..player(id, "name"));
+					_player[cmd[2]].isMuted = 0;
+				end
+			end;
+		};
+
+		[4] = {
+			name = "fow";
+			usage = "!fow <mode>";
+			execute = function(id, cmd)
+				cmd[2] = tonumber(cmd[2]);
+				if(not cmd[2]) then
+					msg2(id, _serverMsgs["error"].."Specify a FOW mode (1-3)");
+				else
+					msg(_serverMsgs["info"].."Fog of war was set by \169000225000"..player(id, "name"));
+					parse("sv_fow "..cmd[2]);
+				end
+			end;
+		};
 	};
 };
