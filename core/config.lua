@@ -91,11 +91,6 @@ _ranks = {
 _cmds = {
 	prefix = "!";
 
-	[0] = {
-		name = "stats";
-		usage = "!stats";
-	};
-
 	admin = {
 		[0] = {
 			name = "kick";
