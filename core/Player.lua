@@ -10,6 +10,7 @@ Player = {
 	rank = 0;
 	points = 0;
 	isAdmin = 0;
+	isMuted = 0;
 
 	rounds = 0;
 	roundDmg = 0;
@@ -88,6 +89,7 @@ function Player:loadStats()
 		self.rank = tonumber(file:read());
 		self.points = tonumber(file:read());
 		self.isAdmin = tonumber(file:read());
+		self.isMuted = tonumber(file:read());
 		file:close();
 	end
 end
@@ -102,6 +104,7 @@ function Player:saveStats()
 	file:write(self.rounds.."\n");
 	file:write(self.rank.."\n");
 	file:write(self.points.."\n");
-	file:write(self.isAdmin);
+	file:write(self.isAdmin.."\n");
+	file:write(self.isMuted);
 	file:close();
 end

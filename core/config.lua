@@ -87,3 +87,80 @@ _ranks = {
 		losePoints = 120;
 	};
 };
+
+_cmds = {
+	prefix = "!";
+
+	[0] = {
+		name = "stats";
+		usage = "!stats";
+	};
+
+	admin = {
+		[0] = {
+			name = "kick";
+			usage = "!kick <id>";
+			execute = function(id, cmd)
+				cmd[2] = tonumber(cmd[2]);
+				if(not cmd[2] or not player(cmd[2], "exists")) then
+					msg2(id, _serverMsgs["error"].."The player doesn\'t exist");
+				elseif(cmd[2] == id) then
+					msg2(id, _serverMsgs["error"].."You can\'t kick yourself");
+				else
+					msg(_serverMsgs["info"].."Player \169000225000"..player(cmd[2], "name").." \169250250250was kicked by \169000225000"..player(id, "name"));
+					parse("kick "..cmd[2].." Kicked by "..player(id, "name"));
+				end
+			end;
+		};
+
+		[1] = {
+			name = "ban";
+			usage = "!ban <id>";
+			execute = function(id, cmd)
+				cmd[2] = tonumber(cmd[2]);
+				if(not cmd[2] or not player(cmd[2], "exists")) then
+					msg2(id, _serverMsgs["error"].."The player doesn\'t exist");
+				elseif(cmd[2] == id) then
+					msg2(id, _serverMsgs["error"].."You can\'t ban yourself");
+				else
+					msg(_serverMsgs["info"].."Player \169000225000"..player(cmd[2], "name").." \169250250250was banned by \169000225000"..player(id, "name"));
+					parse("banip "..cmd[2]);
+				end
+			end;
+		};
+
+		[2] = {
+			name = "mute";
+			usage = "!mute <id>";
+			execute = function(id, cmd)
+				cmd[2] = tonumber(cmd[2]);
+				if(not cmd[2] or not player(cmd[2], "exists")) then
+					msg2(id, _serverMsgs["error"].."The player doesn\'t exist");
+				elseif(cmd[2] == id) then
+					msg2(id, _serverMsgs["error"].."You can\'t mute yourself");
+				elseif(_player[cmd[2]].isMuted ~= 0) then
+					msg2(id, _serverMsgs["error"].."The player is already muted");
+				else
+					msg(_serverMsgs["info"].."Player \169000225000"..player(cmd[2], "name").." \169250250250was muted by \169000225000"..player(id, "name"));
+					_player[cmd[2]].isMuted = 1;
+				end
+			end;
+		};
+
+		[3] = {
+			name = "unmute";
+			usage = "!unmute <id>";
+			execute = function(id, cmd)
+				cmd[2] = tonumber(cmd[2]);
+				if(not cmd[2] or not player(cmd[2], "exists")) then
+					msg2(id, _serverMsgs["error"].."The player doesn\'t exist");
+				elseif(_player[cmd[2]].isMuted == 0) then
+					msg2(id, _serverMsgs["error"].."The player is not muted");
+				else
+					msg(_serverMsgs["info"].."Player \169000225000"..player(cmd[2], "name").." \169250250250was unmuted by \169000225000"..player(id, "name"));
+					_player[cmd[2]].isMuted = 0;
+				end
+			end;
+		};
+	};
+};

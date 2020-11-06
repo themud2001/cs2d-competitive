@@ -36,9 +36,29 @@ function _team(id, team)
 end
 
 function _say(id, text)
-	if(text == "!stats") then
-		_player[id]:printStats();
+	if(_player[id].isMuted ~= 0) then 
+		msg2(id, _serverMsgs["error"].."You are muted");
 		return 1;
+	end
+
+	if(text:sub(0, 1) == _cmds.prefix) then
+		if(text == "!stats") then
+			_player[id]:printStats();
+			return 1;
+		end
+
+		if(_player[id].isAdmin ~= 0) then
+			local cmd = splitText(text);
+			
+			for i=0, #_cmds.admin do
+				if(cmd[1]:sub(2) == _cmds.admin[i].name) then
+					_cmds.admin[i].execute(id, cmd);
+					break;
+				end
+			end
+
+			return 1;
+		end
 	end
 
 	msg(_chatColors[_player[id].team].._player[id].name.." ".._ranks[_player[id].rank].tag..": \169240240240"..text);
