@@ -67,7 +67,7 @@ function _endround(mode)
 		msg2(id, _serverMsgs["info"].."Your damage: \169250250250(\169000225000".._player[id].roundDmg.."\169250250250 damage)");
 	end
 
-	local roundMVP = _match.getMVP(roundDmg);
+	local roundMVP = getMVP(roundDmg);
 
 	if(_player[roundMVP].roundDmg > 0) then
 		_player[roundMVP].MVP = _player[roundMVP].MVP + 1;

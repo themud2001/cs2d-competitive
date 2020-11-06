@@ -1,10 +1,5 @@
 _player = {};
 
-_match = {
-	ttRounds = 0;
-	ctRounds = 0;
-}
-
 _hooks = {"join", "team", "say", "name", "endround", "hit", "startround", "startround_prespawn", "kill", "leave"};
 
 _serverMsgs = {
