@@ -109,10 +109,12 @@ function _startround(mode)
 
 	for _, id in pairs(ttPlayers) do
 		_player[id].roundDmg = 0;
+		parse("setmoney "..id.." 16000");
 	end
 
 	for _, id in pairs(ctPlayers) do
 		_player[id].roundDmg = 0;
+		parse("setmoney "..id.." 16000");
 	end
 end
 
