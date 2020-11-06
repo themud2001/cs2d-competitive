@@ -16,7 +16,10 @@ function getMVP(roundDmg)
 	return roundMVP;
 end
 
-function updateHudtxt(id)
+function updateRankHudtxt(id)
 	parse("hudtxt2 "..id.." 1 \"\169250250250Rank: ".._ranks[_player[id].rank].tag.."\" 8 165");
+end
+
+function updatePointsHudtxt(id)
 	parse("hudtxt2 "..id.." 2 \"\169250250250Points: \169000225000"..math.floor(_player[id].points).."\" 8 185");
 end
