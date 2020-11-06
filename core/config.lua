@@ -157,5 +157,19 @@ _cmds = {
 				end
 			end;
 		};
+
+		[4] = {
+			name = "fow";
+			usage = "!fow <mode>";
+			execute = function(id, cmd)
+				cmd[2] = tonumber(cmd[2]);
+				if(not cmd[2]) then
+					msg2(id, _serverMsgs["error"].."Specify a FOW mode (1-3)");
+				else
+					msg(_serverMsgs["info"].."Fog of war was set by \169000225000"..player(id, "name"));
+					parse("sv_fow "..cmd[2]);
+				end
+			end;
+		};
 	};
 };
