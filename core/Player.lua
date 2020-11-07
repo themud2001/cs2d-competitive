@@ -76,7 +76,7 @@ function Player:updateRank()
 end
 
 function Player:loadStats()
-	local file = io.open(scriptPath.."data/"..(self.usgn or self.steamid)..".txt", "r");
+	local file = io.open(scriptPath.."data/"..((self.usgn ~= 0 and self.usgn) or self.steamid)..".txt", "r");
 	if(file) then
 		self.score = tonumber(file:read());
 		self.deaths = tonumber(file:read());
@@ -93,7 +93,7 @@ function Player:loadStats()
 end
 
 function Player:saveStats()
-	local file = io.open(scriptPath.."data/"..(self.usgn or self.steamid)..".txt", "w+");
+	local file = io.open(scriptPath.."data/"..((self.usgn ~= 0 and self.usgn) or self.steamid)..".txt", "w+");
 	file:write(self.score.."\n");
 	file:write(self.deaths.."\n");
 	file:write(self.assists.."\n");
