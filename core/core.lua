@@ -81,16 +81,17 @@ function _endround(mode)
 		msg2(id, _serverMsgs["info"].."Your damage: \169250250250(\169000225000".._player[id].roundDmg.."\169250250250 damage)");
 	end
 
-	local roundMVP = getMVP(roundDmg);
-
-	if(_player[roundMVP].roundDmg > 0) then
-		_player[roundMVP].MVP = _player[roundMVP].MVP + 1;
-		msg(_serverMsgs["info"].."Highest damage: ".._chatColors[_player[roundMVP].team].._player[roundMVP].name.."\169250250250 (\169000225000".._player[roundMVP].roundDmg.."\169250250250 damage)");	
+	if(next(roundDmg) ~= nil) then
+		local roundMVP = getMVP(roundDmg);
+		if(_player[roundMVP].roundDmg > 0) then
+			_player[roundMVP].MVP = _player[roundMVP].MVP + 1;
+			msg(_serverMsgs["info"].."Highest damage: ".._chatColors[_player[roundMVP].team].._player[roundMVP].name.."\169250250250 (\169000225000".._player[roundMVP].roundDmg.."\169250250250 damage)");	
+		end
 	end
 end
 
 function _hit(id, source, weapon, hpdmg, apdmg, rawdmg)
-	if(_player[source].team ~= _player[id].team) then
+	if(source and _player[source].team ~= _player[id].team) then
 		_player[source].roundDmg = _player[source].roundDmg + hpdmg;
 		_player[source].totalDmg = _player[source].totalDmg + hpdmg;
 	end
