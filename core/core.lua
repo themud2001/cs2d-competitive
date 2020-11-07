@@ -17,11 +17,12 @@ function _join(id)
 	else
 		_player[id]:loadStats();
 		_player[id]:updateRank();
-		updateRankHudtxt(id);
-		updatePointsHudtxt(id);
 		msg2(id, _serverMsgs["info"].."Welcome to "..game("sv_name"));
 		msg2(id, _serverMsgs["info"].."Your rank is ".._ranks[_player[id].rank].tag);
 	end
+
+	updateRankHudtxt(id);
+	updatePointsHudtxt(id);
 end
 
 function _team(id, team)
