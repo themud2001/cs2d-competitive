@@ -1,7 +1,4 @@
 Player = {
-	joinTeamAllowed = false;
-	team = 0;
-
 	score = 0;
 	deaths = 0;
 	assists = 0;
@@ -12,6 +9,7 @@ Player = {
 	isAdmin = 0;
 	isMuted = 0;
 
+	team = 0;
 	rounds = 0;
 	roundDmg = 0;
 	totalDmg = 0;
