@@ -38,7 +38,15 @@ function _say(id, text)
 	end
 
 	if(text:sub(0, 1) == _cmds.prefix) then
-		if(text == "!stats") then
+		if(text == "!rs") then
+			parse("setscore "..id.." 0");
+			parse("setdeaths "..id.." 0");
+			parse("setscore "..id.." 0");
+			msg2(id, _serverMsgs["success"].."You have reset your score");
+			return 1;
+		end
+
+		if(text == "!stats" or text == "!rank") then
 			_player[id]:printStats();
 			return 1;
 		end
@@ -148,4 +156,8 @@ function _leave(id)
 		_player[id]:saveStats();
 		_player[id] = nil;
 	end
+end
+
+function _minute()
+	msg(_hints[math.random(0, #_hints-1)]);
 end
