@@ -1,3 +1,4 @@
+math.randomseed(os.time());
 parse("mp_hudscale 1");
 
 for _, hook in pairs(_hooks) do
@@ -39,7 +40,7 @@ function _say(id, text)
 
 	if(text:sub(0, 1) == _cmds.prefix) then
 		text = text:lower();
-		
+
 		if(text == "!rs") then
 			parse("setscore "..id.." 0");
 			parse("setdeaths "..id.." 0");
