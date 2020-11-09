@@ -208,13 +208,13 @@ _cmds = {
 		[1] = {
 			name = "stats";
 			usage = "!stats";
-			execute = function(id) _player[tonumber(id)]:printStats(); end;
+			execute = function(id) _player[id]:printStats(); end;
 		};
 
 		[2] = {
 			name = "rank";
 			usage = "!rank";
-			execute = function(id) _player[tonumber(id)]:printStats(); end;
+			execute = function(id) _player[id]:printStats(); end;
 		};
 	};
 };
