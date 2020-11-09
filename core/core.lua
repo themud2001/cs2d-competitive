@@ -45,7 +45,7 @@ function _say(id, text)
 		for i=0, #_cmds.normal do
 			if(cmd[1]:sub(2) == _cmds.normal[i].name) then
 				_cmds.normal[i].execute(id);
-				break;
+				return 1;
 			end
 		end
 
@@ -53,12 +53,10 @@ function _say(id, text)
 			for i=0, #_cmds.admin do
 				if(cmd[1]:sub(2) == _cmds.admin[i].name) then
 					_cmds.admin[i].execute(id, cmd);
-					break;
+					return 1;
 				end
 			end
 		end
-
-		return 1;
 	end
 
 	msg(_chatColors[_player[id].team].._player[id].name.." ".._ranks[_player[id].rank].tag..": \169240240240"..text);
