@@ -180,5 +180,6 @@ _hints = {
 	[2] = _chatColors[0].."Running doesn\'t affect weapons recoil";
 	[3] = _chatColors[0].."Killing higher rank players give you additional points";
 	[4] = _chatColors[0].."Shotguns are short-ranged guns";
-	[5] = _chatColors[0].."Shotguns are short-ranged guns";
+	[5] = _chatColors[0].."Planting the bomb or defusing it gives you addtional points";
+	[6] = _chatColors[0].."Check every corner, campers can hide everywhere";
 };
