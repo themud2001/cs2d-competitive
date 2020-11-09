@@ -192,6 +192,31 @@ _cmds = {
 			end;
 		};
 	};
+
+	normal = {
+		[0] = {
+			name = "rs";
+			usage = "!rs";
+			execute = function(id)
+				parse("setscore "..id.." 0");
+				parse("setdeaths "..id.." 0");
+				parse("setscore "..id.." 0");
+				msg2(id, _serverMsgs["success"].."You have reset your score");
+			end;
+		};
+
+		[1] = {
+			name = "stats";
+			usage = "!stats";
+			execute = function(id) _player[tonumber(id)]:printStats(); end;
+		};
+
+		[2] = {
+			name = "rank";
+			usage = "!rank";
+			execute = function(id) _player[tonumber(id)]:printStats(); end;
+		};
+	};
 };
 
 _hints = {
