@@ -171,6 +171,26 @@ _cmds = {
 				end
 			end;
 		};
+
+		[5] = {
+			name = "map";
+			usage = "!map <map name>";
+			execute = function(id, cmd)
+				if(not cmd[2]) then
+					msg2(id, _serverMsgs["error"].."Specify a map name");
+				else
+					for _, mapName in pairs(_maps) do
+						if(mapName == cmd[2]) then
+							msg(_serverMsgs["info"].."The map was changed to \169000225000"..mapName.." \169250250250by \169000225000"..player(id, "name"));
+							parse("changemap "..mapName);
+							return;
+						end
+					end
+
+					msg2(id, _serverMsgs["error"].."The map doesn\'t exist or isn\'t a standard one");
+				end
+			end;
+		};
 	};
 };
 
@@ -183,3 +203,5 @@ _hints = {
 	[5] = _chatColors[0].."Planting the bomb or defusing it gives you addtional points";
 	[6] = _chatColors[0].."Check every corner, campers can hide everywhere";
 };
+
+_maps = {"de_dust", "de_dust2", "cs_office", "de_cs2d", "de_inferno", "cs_assault", "de_cbble", "de_desert", "de_aztec"};
