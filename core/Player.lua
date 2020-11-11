@@ -66,7 +66,7 @@ function Player:printStats()
 end
 
 function Player:updateRank()
-	if(self.rank >= (#_ranks - 1)) then return; end
+	if(self.rank >= #_ranks) then return; end
 	if(self.points >= _ranks[self.rank + 1].points) then
 		self.rank = self.rank + 1;
 		msg2(self.id, _serverMsgs["success"].."Congratulations! You are promoted to: ".._ranks[self.rank].tag);
