@@ -40,7 +40,6 @@ function checkCommands(id, text)
 		local cmd = splitText(text);
 
 		if(_player[id].cooldown) then
-			msg2(id, _serverMsgs["error"].."You are on a cooldown. Wait a few seconds and try again");
 			return 1;
 		end
 
