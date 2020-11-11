@@ -200,11 +200,30 @@ _cmds = {
 				if(not cmd[2] or not player(cmd[2], "exists")) then
 					msg2(id, _serverMsgs["error"].."The player doesn\'t exist");
 				elseif(_player[cmd[2]].isAdmin ~= 0) then
-					msg2(id, _serverMsgs["error"].."The player specified is already an admin");
+					msg2(id, _serverMsgs["error"].."The player with the specified ID is already an admin");
 				else
-					msg(_serverMsgs["info"].."Player \169000225000"..player(cmd[2], "name").." \169250250250was promoted to admin by \169000225000"..player(id, "name"));
-					msg2(cmd[2], _serverMsgs["success"].."Congratulations! You\'re now an admin");
 					_player[cmd[2]].isAdmin = 1;
+					msg(_serverMsgs["info"].."Player \169000225000"..player(cmd[2], "name").." \169250250250was promoted to admin by \169000225000"..player(id, "name"));
+					msg2(cmd[2], _serverMsgs["success"].."You are now an admin");
+				end
+			end;
+		};
+
+		[7] = {
+			name = "unadmin";
+			usage = "!unadmin <id>";
+			execute = function(id, cmd)
+				cmd[2] = tonumber(cmd[2]);
+				if(not cmd[2] or not player(cmd[2], "exists")) then
+					msg2(id, _serverMsgs["error"].."The player doesn\'t exist");
+				elseif(_player[cmd[2]].isAdmin == 0) then
+					msg2(id, _serverMsgs["error"].."The player with the specified ID is not an admin");
+				elseif(cmd[2] == id) then
+					msg2(id, _serverMsgs["error"].."You can\'t demote yourself");
+				else
+					_player[cmd[2]].isAdmin = 0;
+					msg(_serverMsgs["info"].."Player \169000225000"..player(cmd[2], "name").." \169250250250was demoted to user by \169000225000"..player(id, "name"));
+					msg2(cmd[2], _serverMsgs["error"].."You are now a normal user");
 				end
 			end;
 		};
