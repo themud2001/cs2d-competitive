@@ -227,6 +227,7 @@ _hints = {
 	[4] = _chatColors[0].."Shotguns are short-ranged guns";
 	[5] = _chatColors[0].."Planting the bomb or defusing it gives you addtional points";
 	[6] = _chatColors[0].."Check every corner, campers can be everywhere";
+	[7] = _chatColors[0].."Type \"".._cmds.prefix.."help\" to see a list of available commands";
 };
 
 _maps = {"de_dust", "de_dust2", "cs_office", "de_cs2d", "de_inferno", "cs_assault", "de_cbble", "de_desert", "de_aztec"};
