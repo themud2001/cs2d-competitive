@@ -169,5 +169,5 @@ function _leave(id)
 end
 
 function _minute()
-	msg(_hints[math.random(0, #_hints-1)]);
+	msg(_hints[math.random(0, #_hints)]);
 end

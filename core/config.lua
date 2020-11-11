@@ -220,7 +220,7 @@ _cmds = {
 };
 
 _hints = {
-	[0] = _chatColors[0].."Type \"".._cmds.prefix.."rank\" or \"".._cmds.prefix.."stats\" to see your stats";
+	[0] = _chatColors[0].."Type \"".._cmds.prefix.."rank\", \"".._cmds.prefix.."stats\" or click [F4] to see your stats";
 	[1] = _chatColors[0].."Type \"".._cmds.prefix.."rs\" to reset your score";
 	[2] = _chatColors[0].."Running doesn\'t affect weapons recoil";
 	[3] = _chatColors[0].."Killing higher rank players give you additional points";
