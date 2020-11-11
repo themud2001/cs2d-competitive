@@ -22,8 +22,8 @@ function _join(id)
 		msg2(id, _serverMsgs["info"].."Your rank is ".._ranks[_player[id].rank].tag);
 	end
 
-	updateRankHudtxt(id);
-	updatePointsHudtxt(id);
+	_player[id]:updateRankHudtxt();
+	_player[id]:updatePointsHudtxt();
 end
 
 function _team(id, team)
@@ -140,12 +140,12 @@ function _startround_prespawn(mode)
 
 	for _, id in pairs(ttPlayers) do
 		_player[id]:updateRank();
-		updateRankHudtxt(id);
+		_player[id]:updateRankHudtxt();
 	end
 
 	for _, id in pairs(ctPlayers) do
 		_player[id]:updateRank();
-		updateRankHudtxt(id);
+		_player[id]:updateRankHudtxt();
 	end
 end
 
@@ -157,8 +157,8 @@ function _kill(killer, victim, weapon, x, y, killerobject, assistant)
 	_player[killer]:calculateKill(victim);
 	_player[victim]:calculateDeath(killer);
 
-	updatePointsHudtxt(victim);
-	updatePointsHudtxt(killer);
+	_player[victim]:updatePointsHudtxt();
+	_player[killer]:updatePointsHudtxt();
 end
 
 function _leave(id)

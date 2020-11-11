@@ -106,3 +106,11 @@ function Player:saveStats()
 	file:write(self.isMuted);
 	file:close();
 end
+
+function Player:updateRankHudtxt()
+	parse("hudtxt2 "..self.id.." 1 \"\169250250250Rank: ".._ranks[self.rank].tag.."\" 8 165");
+end
+
+function Player:updatePointsHudtxt()
+	parse("hudtxt2 "..self.id.." 2 \"\169250250250Points: \169000225000"..math.floor(self.points).."\" 8 185");
+end
