@@ -115,11 +115,13 @@ function _startround_prespawn(mode)
 	local ctPlayers = player(0, "team2");
 
 	for _, id in pairs(ttPlayers) do
+		_player[id]:updateRank();
 		if(_player[id].rankImg) then freeimage(_player[id].rankImg); end
 		_player[id].rankImg = image(_ranksPath.._player[id].rank..".png", 0, 0, id+200);
 	end
 
 	for _, id in pairs(ctPlayers) do
+		_player[id]:updateRank();
 		if(_player[id].rankImg) then freeimage(_player[id].rankImg); end
 		_player[id].rankImg = image(_ranksPath.._player[id].rank..".png", 0, 0, id+200);
 	end
