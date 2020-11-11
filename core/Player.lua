@@ -13,6 +13,7 @@ Player = {
 	rounds = 0;
 	roundDmg = 0;
 	totalDmg = 0;
+	cooldown = false;
 };
 
 function Player:new(object)

@@ -2,6 +2,8 @@ _player = {};
 
 _hooks = {"join", "team", "say", "sayteam", "name", "endround", "hit", "startround", "startround_prespawn", "kill", "leave", "minute", "serveraction"};
 
+_cooldownTime = 4000;
+
 _serverMsgs = {
 	["info"] = "\169041098255[Server]: \169250250250";
 	["success"] = "\169000225000[Server]: \169250250250";

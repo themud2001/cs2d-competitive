@@ -151,7 +151,13 @@ function _minute()
 end
 
 function _serveraction(id, action)
+	if(_player[id].cooldown) then
+		msg2(id, _serverMsgs["error"].."You are on a cooldown. Wait a few seconds and try again");
+		return;
+	end
+
 	if(action == 3) then
 		_player[id]:printStats();
+		setCooldown(id);
 	end
 end

@@ -25,10 +25,24 @@ function getMVP(roundDmg)
 	return roundMVP;
 end
 
+function removeCooldown(id)
+	_player[tonumber(id)].cooldown = false;
+end
+
+function setCooldown(id)
+	_player[id].cooldown = true;
+	timer(_cooldownTime, "removeCooldown", id);
+end
+
 function checkCommands(id, text)
 	if(text:sub(0, 1) == _cmds.prefix) then
 		text = text:lower();
 		local cmd = splitText(text);
+
+		if(_player[id].cooldown) then
+			msg2(id, _serverMsgs["error"].."You are on a cooldown. Wait a few seconds and try again");
+			return 1;
+		end
 
 		if(cmd[1] == "!help") then
 			msg2(id, _chatColors[0].."---------Commands List---------");
@@ -43,12 +57,15 @@ function checkCommands(id, text)
 				end
 			end
 
+			setCooldown(id);
+
 			return 1;
 		end
 
 		for i=0, #_cmds.normal do
 			if(cmd[1]:sub(2) == _cmds.normal[i].name) then
 				_cmds.normal[i].execute(id);
+				setCooldown(id);
 				return 1;
 			end
 		end
