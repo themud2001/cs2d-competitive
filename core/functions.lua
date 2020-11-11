@@ -39,9 +39,7 @@ function checkCommands(id, text)
 		text = text:lower();
 		local cmd = splitText(text);
 
-		if(_player[id].cooldown) then
-			return 1;
-		end
+		if(_player[id].cooldown) then return 1; end
 
 		if(cmd[1] == "!help") then
 			msg2(id, _chatColors[0].."---------Commands List---------");
