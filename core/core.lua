@@ -48,6 +48,15 @@ function _say(id, text)
 	return 1;
 end
 
+function _sayteam(id, text)
+	local team = player(0, "team".._player[id].team);
+	for _, id in pairs(team) do
+		msg2(id, _chatColors[_player[id].team].._player[id].name.." ".._ranks[_player[id].rank].tag.." \169240240240(Team)"..(player(id, "health") == 0 and " *DEAD*" or "")..": "..text);
+	end
+
+	return 1;
+end
+
 function _name(id, old, new)
 	_player[id].name = new;
 end
