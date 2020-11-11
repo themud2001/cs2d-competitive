@@ -1,5 +1,5 @@
 math.randomseed(os.time());
-parse("mp_hudscale 0");
+parse("mp_hudscale 1");
 
 for _, hook in pairs(_hooks) do
 	addhook(hook, "_"..hook);
