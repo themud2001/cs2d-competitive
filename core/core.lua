@@ -1,5 +1,4 @@
 math.randomseed(os.time());
-parse("mp_hudscale 0");
 
 for _, hook in pairs(_hooks) do
 	addhook(hook, "_"..hook);
@@ -25,12 +24,11 @@ function _join(id)
 			msg2(id, _serverMsgs["info"].."Your current role is \169000225000admin");
 		end
 	end
-
-	_player[id]:updateRankHudtxt();
-	_player[id]:updatePointsHudtxt();
 end
 
 function _team(id, team)
+	if(_player[id].rankImg) then freeimage(_player[id].rankImg); end
+	_player[id].rankImg = image(_ranksPath.._player[id].rank..".png", 0, 0, id+200);
 	_player[id].team = team;
 end
 
@@ -117,13 +115,13 @@ function _startround_prespawn(mode)
 	local ctPlayers = player(0, "team2");
 
 	for _, id in pairs(ttPlayers) do
-		_player[id]:updateRank();
-		_player[id]:updateRankHudtxt();
+		if(_player[id].rankImg) then freeimage(_player[id].rankImg); end
+		_player[id].rankImg = image(_ranksPath.._player[id].rank..".png", 0, 0, id+200);
 	end
 
 	for _, id in pairs(ctPlayers) do
-		_player[id]:updateRank();
-		_player[id]:updateRankHudtxt();
+		if(_player[id].rankImg) then freeimage(_player[id].rankImg); end
+		_player[id].rankImg = image(_ranksPath.._player[id].rank..".png", 0, 0, id+200);
 	end
 end
 
@@ -134,12 +132,10 @@ function _kill(killer, victim, weapon, x, y, killerobject, assistant)
 
 	_player[killer]:calculateKill(victim);
 	_player[victim]:calculateDeath(killer);
-
-	_player[victim]:updatePointsHudtxt();
-	_player[killer]:updatePointsHudtxt();
 end
 
 function _leave(id)
+	if(_player[id].rankImg) then freeimage(_player[id].rankImg); end
 	if(_player[id].usgn ~= 0 or _player[id].steamid ~= "0") then
 		_player[id]:saveStats();
 		_player[id] = nil;

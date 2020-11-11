@@ -14,6 +14,7 @@ Player = {
 	roundDmg = 0;
 	totalDmg = 0;
 	cooldown = false;
+	rankImg = nil;
 };
 
 function Player:new(object)
@@ -106,14 +107,4 @@ function Player:saveStats()
 	file:write(self.isAdmin.."\n");
 	file:write(self.isMuted);
 	file:close();
-end
-
-function Player:updateRankHudtxt()
-	local x, y = 10, (player(self.id, "screenh") / 2) - 90;
-	parse("hudtxt2 "..self.id.." 1 \"\169250250250Rank: ".._ranks[self.rank].tag.."\" "..x.." "..y.." 0 0 16");
-end
-
-function Player:updatePointsHudtxt()
-	local x, y = 10, (player(self.id, "screenh") / 2) - 70;
-	parse("hudtxt2 "..self.id.." 2 \"\169250250250Points: \169000225000"..self.points.."\" "..x.." "..y.." 0 0 16");
 end
