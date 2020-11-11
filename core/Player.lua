@@ -108,9 +108,9 @@ function Player:saveStats()
 end
 
 function Player:updateRankHudtxt()
-	parse("hudtxt2 "..self.id.." 1 \"\169250250250Rank: ".._ranks[self.rank].tag.."\" 8 165");
+	parse("hudtxt2 "..self.id.." 1 \"\169250250250Rank: ".._ranks[self.rank].tag.."\" 8 195 0 0 16");
 end
 
 function Player:updatePointsHudtxt()
-	parse("hudtxt2 "..self.id.." 2 \"\169250250250Points: \169000225000"..math.floor(self.points).."\" 8 185");
+	parse("hudtxt2 "..self.id.." 2 \"\169250250250Points: \169000225000"..math.floor(self.points).."\" 8 220 0 0 16");
 end
