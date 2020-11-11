@@ -171,3 +171,9 @@ end
 function _minute()
 	msg(_hints[math.random(0, #_hints)]);
 end
+
+function _serveraction(id, action)
+	if(action == 3) then
+		_player[id]:printStats();
+	end
+end

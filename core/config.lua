@@ -1,6 +1,6 @@
 _player = {};
 
-_hooks = {"join", "team", "say", "name", "endround", "hit", "startround", "startround_prespawn", "kill", "leave", "minute"};
+_hooks = {"join", "team", "say", "name", "endround", "hit", "startround", "startround_prespawn", "kill", "leave", "minute", "serveraction"};
 
 _serverMsgs = {
 	["info"] = "\169041098255[Server]: \169250250250";
