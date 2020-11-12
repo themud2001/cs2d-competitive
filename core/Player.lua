@@ -2,17 +2,16 @@ Player = {
 	score = 0;
 	deaths = 0;
 	assists = 0;
-	ADR = 0;
 	MVP = 0;
+	totalDmg = 0;
+	rounds = 0;
 	rank = 0;
 	points = 0;
 	isAdmin = 0;
 	isMuted = 0;
 
 	team = 0;
-	rounds = 0;
 	roundDmg = 0;
-	totalDmg = 0;
 	cooldown = false;
 	rankImg = nil;
 };
@@ -61,7 +60,7 @@ function Player:printStats()
 	msg2(self.id, _chatColors[0].."Deaths: \169000225000"..self.deaths);
 	msg2(self.id, _chatColors[0].."Assists: \169000225000"..self.assists);
 	msg2(self.id, _chatColors[0].."MVPs: \169000225000"..self.MVP);
-	msg2(self.id, _chatColors[0].."ADR: \169000225000"..self.ADR);
+	msg2(self.id, _chatColors[0].."ADR: \169000225000"..(self.rounds > 0 and math.floor(self.totalDmg / self.rounds) or 0));
 	msg2(self.id, _chatColors[0].."Rounds played: \169000225000"..self.rounds);
 	msg2(self.id, _chatColors[0].."Rank: ".._ranks[self.rank].tag.." ("..self.points..")");
 end
@@ -83,8 +82,8 @@ function Player:loadStats()
 		self.score = tonumber(file:read());
 		self.deaths = tonumber(file:read());
 		self.assists = tonumber(file:read());
-		self.ADR = tonumber(file:read());
 		self.MVP = tonumber(file:read());
+		self.totalDmg = tonumber(file:read());
 		self.rounds = tonumber(file:read());
 		self.rank = tonumber(file:read());
 		self.points = tonumber(file:read());
@@ -99,8 +98,8 @@ function Player:saveStats()
 	file:write(self.score.."\n");
 	file:write(self.deaths.."\n");
 	file:write(self.assists.."\n");
-	file:write(self.ADR.."\n");
 	file:write(self.MVP.."\n");
+	file:write(self.totalDmg.."\n");
 	file:write(self.rounds.."\n");
 	file:write(self.rank.."\n");
 	file:write(self.points.."\n");
