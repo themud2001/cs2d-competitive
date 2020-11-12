@@ -27,8 +27,7 @@ function _join(id)
 end
 
 function _team(id, team)
-	if(_player[id].rankImg) then freeimage(_player[id].rankImg); end
-	_player[id].rankImg = image(_ranksPath.._player[id].rank..".png", 0, 0, id+200);
+	_player[id]:updateRankImage();
 	_player[id].team = team;
 end
 
@@ -116,14 +115,12 @@ function _startround_prespawn(mode)
 
 	for _, id in pairs(ttPlayers) do
 		_player[id]:updateRank();
-		if(_player[id].rankImg) then freeimage(_player[id].rankImg); end
-		_player[id].rankImg = image(_ranksPath.._player[id].rank..".png", 0, 0, id+200);
+		_player[id]:updateRankImage();
 	end
 
 	for _, id in pairs(ctPlayers) do
 		_player[id]:updateRank();
-		if(_player[id].rankImg) then freeimage(_player[id].rankImg); end
-		_player[id].rankImg = image(_ranksPath.._player[id].rank..".png", 0, 0, id+200);
+		_player[id]:updateRankImage();
 	end
 end
 
