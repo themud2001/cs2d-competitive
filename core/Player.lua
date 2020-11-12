@@ -90,8 +90,11 @@ function Player:updateRank()
 	end
 end
 
+function Player:freeImage()
+	if(self.rankImg ~= nil) then freeimage(self.rankImg); end
+end
+
 function Player:updateRankImage()
-	if(self.rankImg) then freeimage(self.rankImg); end
 	self.rankImg = image(_ranksPath..self.rank..".png", 0, 0, self.id+200);
 end
 
