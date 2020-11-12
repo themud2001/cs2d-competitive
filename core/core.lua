@@ -27,7 +27,6 @@ function _join(id)
 end
 
 function _team(id, team)
-	_player[id]:updateRankImage();
 	_player[id].team = team;
 end
 
@@ -87,9 +86,11 @@ function _endround(mode)
 end
 
 function _hit(id, source, weapon, hpdmg, apdmg, rawdmg)
-	if(source and _player[source].team ~= _player[id].team) then
-		_player[source].roundDmg = _player[source].roundDmg + hpdmg;
-		_player[source].totalDmg = _player[source].totalDmg + hpdmg;
+	if(source) then
+		if(_player[source].team ~= _player[id].team) then
+			_player[source].roundDmg = _player[source].roundDmg + hpdmg;
+			_player[source].totalDmg = _player[source].totalDmg + hpdmg;
+		end
 	end
 end
 
@@ -98,30 +99,26 @@ function _startround(mode)
 	local ctPlayers = player(0, "team2");
 
 	for _, id in pairs(ttPlayers) do
+		_player[id]:updateRank();
+		_player[id]:freeImage();
+		_player[id]:updateRankImage();
+
 		_player[id].roundDmg = 0;
 		parse("setmoney "..id.." 16000");
 	end
 
 	for _, id in pairs(ctPlayers) do
+		_player[id]:updateRank();
+		_player[id]:freeImage();
+		_player[id]:updateRankImage();
+		
 		_player[id].roundDmg = 0;
 		parse("setmoney "..id.." 16000");
 	end
 end
 
-
-function _startround_prespawn(mode)
-	local ttPlayers = player(0, "team1");
-	local ctPlayers = player(0, "team2");
-
-	for _, id in pairs(ttPlayers) do
-		_player[id]:updateRank();
-		_player[id]:updateRankImage();
-	end
-
-	for _, id in pairs(ctPlayers) do
-		_player[id]:updateRank();
-		_player[id]:updateRankImage();
-	end
+function _spawn(id)
+	_player[id]:updateRankImage();
 end
 
 function _kill(killer, victim, weapon, x, y, killerobject, assistant)
@@ -134,6 +131,7 @@ function _kill(killer, victim, weapon, x, y, killerobject, assistant)
 end
 
 function _leave(id)
+	_player[id]:freeImage();
 	if(_player[id].usgn ~= 0 or _player[id].steamid ~= "0") then
 		_player[id]:saveStats();
 		_player[id] = nil;

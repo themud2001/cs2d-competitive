@@ -1,6 +1,6 @@
 _player = {};
 
-_hooks = {"join", "team", "say", "sayteam", "name", "endround", "hit", "startround", "startround_prespawn", "kill", "leave", "minute", "serveraction"};
+_hooks = {"join", "team", "say", "sayteam", "name", "endround", "hit", "startround", "spawn", "kill", "leave", "minute", "serveraction"};
 
 _ranksPath = "gfx/ranks/";
 
