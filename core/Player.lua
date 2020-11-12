@@ -67,12 +67,26 @@ end
 
 function Player:updateRank()
 	if(self.rank >= #_ranks) then return; end
-	if(self.points >= _ranks[self.rank + 1].points) then
-		self.rank = self.rank + 1;
-		msg2(self.id, _serverMsgs["success"].."Congratulations! You are promoted to: ".._ranks[self.rank].tag);
-	elseif(self.points < _ranks[self.rank].points) then
+
+	if(self.points < _ranks[self.rank].points) then
 		self.rank = self.rank - 1;
 		msg2(self.id, _serverMsgs["error"].."You are demoted to: ".._ranks[self.rank].tag);
+		return;
+	end
+
+	local promoted = false;
+
+	for i=self.rank+1, #_ranks do
+		if(self.points >= _ranks[i].points) then
+			self.rank = self.rank + 1;
+			promoted = true;
+		else
+			break;
+		end
+	end
+
+	if(promoted) then
+		msg2(self.id, _serverMsgs["success"].."Congratulations! You are promoted to: ".._ranks[self.rank].tag);
 	end
 end
 
