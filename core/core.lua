@@ -134,7 +134,6 @@ function _kill(killer, victim, weapon, x, y, killerobject, assistant)
 end
 
 function _leave(id)
-	if(_player[id].rankImg) then freeimage(_player[id].rankImg); end
 	if(_player[id].usgn ~= 0 or _player[id].steamid ~= "0") then
 		_player[id]:saveStats();
 		_player[id] = nil;
