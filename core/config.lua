@@ -306,6 +306,54 @@ _cmds = {
 				end
 			end;
 		};
+
+		[8] = {
+			name = "maket";
+			usage = "!maket <id>";
+			execute = function(id, cmd)
+				cmd[2] = tonumber(cmd[2]);
+				if(not cmd[2] or not player(cmd[2], "exists")) then
+					msg2(id, _serverMsgs["error"].."The player doesn\'t exist");
+				elseif(_player[cmd[2]].team == 1) then
+					msg2(id, _serverMsgs["error"].."The player with the specified ID is already in TT");
+				else
+					msg(_serverMsgs["info"].."Player \169000225000"..player(cmd[2], "name").." \169250250250was moved to TT by \169000225000"..player(id, "name"));
+					parse("maket "..cmd[2]);
+				end
+			end;
+		};
+
+		[9] = {
+			name = "makect";
+			usage = "!makect <id>";
+			execute = function(id, cmd)
+				cmd[2] = tonumber(cmd[2]);
+				if(not cmd[2] or not player(cmd[2], "exists")) then
+					msg2(id, _serverMsgs["error"].."The player doesn\'t exist");
+				elseif(_player[cmd[2]].team == 2) then
+					msg2(id, _serverMsgs["error"].."The player with the specified ID is already in CT");
+				else
+					msg(_serverMsgs["info"].."Player \169000225000"..player(cmd[2], "name").." \169250250250was moved to CT by \169000225000"..player(id, "name"));
+					parse("makect "..cmd[2]);
+				end
+			end;
+		};
+
+		[10] = {
+			name = "makespec";
+			usage = "!makespec <id>";
+			execute = function(id, cmd)
+				cmd[2] = tonumber(cmd[2]);
+				if(not cmd[2] or not player(cmd[2], "exists")) then
+					msg2(id, _serverMsgs["error"].."The player doesn\'t exist");
+				elseif(_player[cmd[2]].team == 0) then
+					msg2(id, _serverMsgs["error"].."The player with the specified ID is already a spectator");
+				else
+					msg(_serverMsgs["info"].."Player \169000225000"..player(cmd[2], "name").." \169250250250was made a spectator by \169000225000"..player(id, "name"));
+					parse("makespec "..cmd[2]);
+				end
+			end;
+		};
 	};
 
 	normal = {
