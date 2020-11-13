@@ -182,7 +182,7 @@ _cmds = {
 					msg2(id, _serverMsgs["error"].."You can\'t kick yourself");
 				else
 					msg(_serverMsgs["info"].."Player \169000225000"..player(cmd[2], "name").." \169250250250was kicked by \169000225000"..player(id, "name"));
-					parse("kick "..cmd[2].." Kicked by "..player(id, "name"));
+					parse("kick "..cmd[2].." \"Kicked by "..player(id, "name").."\"");
 				end
 			end;
 		};
@@ -198,7 +198,7 @@ _cmds = {
 					msg2(id, _serverMsgs["error"].."You can\'t ban yourself");
 				else
 					msg(_serverMsgs["info"].."Player \169000225000"..player(cmd[2], "name").." \169250250250was banned by \169000225000"..player(id, "name"));
-					parse("banip "..cmd[2]);
+					parse("banip "..cmd[2].." 0 \"Banned by "..player(id, "name").."\"");
 				end
 			end;
 		};
