@@ -134,7 +134,7 @@ end
 
 function _leave(id)
 	if(_player[id] == nil) then return; end
-	
+
 	_player[id]:freeImage();
 	if(_player[id].usgn ~= 0 or _player[id].steamid ~= "0") then
 		_player[id]:saveStats();
@@ -151,5 +151,15 @@ function _serveraction(id, action)
 	if(action == 3) then
 		_player[id]:printStats();
 		setCooldown(id);
+	end
+end
+
+function _mapchange(map)
+	local players = player(0, "table");
+	for _, id in pairs(players) do
+		if(_player[id].usgn ~= 0 or _player[id].steamid ~= "0") then
+			_player[id]:saveStats();
+			_player[id] = nil;
+		end
 	end
 end
