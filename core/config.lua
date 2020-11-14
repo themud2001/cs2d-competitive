@@ -128,35 +128,35 @@ _ranks = {
 		tag = "\169000210252[Diamond I]";
 		points = 2100;
 		winPoints = 75;
-		losePoints = 90;
+		losePoints = 100;
 	};
 
 	[16] = {
 		tag = "\169000210252[Diamond II]";
 		points = 2300;
 		winPoints = 70;
-		losePoints = 90;
+		losePoints = 110;
 	};
 
 	[17] = {
 		tag = "\169000210252[Diamond III]";
 		points = 2500;
 		winPoints = 70;
-		losePoints = 95;
+		losePoints = 110;
 	};
 
 	[18] = {
 		tag = "\169163000205[Guardian]";
 		points = 3000;
 		winPoints = 70;
-		losePoints = 100;
+		losePoints = 115;
 	};
 
 	[19] = {
 		tag = "\169000150255[S\169000125255u\169000100255p\169000080255r\169000065255e\169000035255m\169000000255e]";
 		points = 3600;
 		winPoints = 65;
-		losePoints = 110;
+		losePoints = 115;
 	};
 
 	[20] = {
