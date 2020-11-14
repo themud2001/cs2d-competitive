@@ -149,14 +149,14 @@ _ranks = {
 		tag = "\169163000205[Guardian]";
 		points = 2750;
 		winPoints = 70;
-		losePoints = 95;
+		losePoints = 100;
 	};
 
 	[19] = {
 		tag = "\169000150255[S\169000125255u\169000100255p\169000080255r\169000065255e\169000035255m\169000000255e]";
 		points = 3350;
 		winPoints = 65;
-		losePoints = 95;
+		losePoints = 100;
 	};
 
 	[20] = {
