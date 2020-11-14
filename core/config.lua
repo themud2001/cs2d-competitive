@@ -85,85 +85,85 @@ _ranks = {
 	[9] = {
 		tag = "\169219172002[Gold I]";
 		points = 1100;
-		winPoints = 100;
-		losePoints = 55;
+		winPoints = 90;
+		losePoints = 60;
 	};
 
 	[10] = {
 		tag = "\169235184002[Gold II]";
 		points = 1235;
-		winPoints = 100;
+		winPoints = 90;
 		losePoints = 60;
 	};
 
 	[11] = {
 		tag = "\169255200003[Gold III]";
 		points = 1365;
-		winPoints = 100;
+		winPoints = 90;
 		losePoints = 60;
 	};
 
 	[12] = {
 		tag = "\169030212002[Emerald I]";
 		points = 1500;
-		winPoints = 90;
+		winPoints = 80;
 		losePoints = 65;
 	};
 
 	[13] = {
 		tag = "\169033232002[Emerald II]";
 		points = 1700;
-		winPoints = 90;
+		winPoints = 75;
 		losePoints = 65;
 	};
 
 	[14] = {
 		tag = "\169037252003[Emerald III]";
 		points = 1900;
-		winPoints = 90;
+		winPoints = 75;
 		losePoints = 65;
 	};
 
 	[15] = {
 		tag = "\169000210252[Diamond I]";
 		points = 2100;
-		winPoints = 90;
+		winPoints = 75;
 		losePoints = 70;
 	};
 
 	[16] = {
 		tag = "\169000210252[Diamond II]";
 		points = 2300;
-		winPoints = 90;
+		winPoints = 75;
 		losePoints = 75;
 	};
 
 	[17] = {
 		tag = "\169000210252[Diamond III]";
 		points = 2500;
-		winPoints = 90;
+		winPoints = 70;
 		losePoints = 80;
 	};
 
 	[18] = {
 		tag = "\169163000205[Guardian]";
 		points = 2750;
-		winPoints = 80;
-		losePoints = 80;
+		winPoints = 70;
+		losePoints = 95;
 	};
 
 	[19] = {
 		tag = "\169000150255[S\169000125255u\169000100255p\169000080255r\169000065255e\169000035255m\169000000255e]";
 		points = 3350;
-		winPoints = 75;
-		losePoints = 80;
+		winPoints = 65;
+		losePoints = 95;
 	};
 
 	[20] = {
 		tag = "\169000000000[Overlord]";
 		points = 4000;
-		winPoints = 70;
-		losePoints = 90;
+		winPoints = 60;
+		losePoints = 100;
 	};
 };
 
