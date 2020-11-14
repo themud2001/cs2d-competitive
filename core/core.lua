@@ -31,7 +31,7 @@ function _team(id, team)
 end
 
 function _say(id, text)
-	text = text:gsub("[@C]+", "");
+	text = text:gsub("@C", "");
 
 	if(_player[id].isMuted ~= 0 and _player[id].isAdmin == 0) then 
 		msg2(id, _serverMsgs["error"].."You are muted");
