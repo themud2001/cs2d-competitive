@@ -204,6 +204,28 @@ _cmds = {
 		};
 
 		[2] = {
+			name = "tempban";
+			usage = "!tempban <id> <hours>";
+			execute = function(id, cmd)
+				cmd[2] = tonumber(cmd[2]);
+				cmd[3] = tonumber(cmd[3]) or 1;
+				local hourString = cmd[3] > 1 and "hours" or "hour";
+
+				if(cmd[3] > 24) then cmd[3] = 24; end
+				if(cmd[3] <= 0) then cmd[3] = 1; end
+
+				if(not cmd[2] or not player(cmd[2], "exists")) then
+					msg2(id, _serverMsgs["error"].."The player doesn\'t exist");
+				elseif(cmd[2] == id) then
+					msg2(id, _serverMsgs["error"].."You can\'t ban yourself");
+				else
+					msg(_serverMsgs["info"].."Player \169000225000"..player(cmd[2], "name").." \169250250250was temp-banned by \169000225000"..player(id, "name").." \169250250250for (\169000225000"..cmd[3].."\169250250250) "..hourString);
+					parse("banip "..cmd[2].." "..(cmd[3] * 60).." \"Temporarily-banned by "..player(id, "name").." for "..cmd[3].." "..hourString.."\"");
+				end
+			end;
+		};
+
+		[3] = {
 			name = "mute";
 			usage = "!mute <id>";
 			execute = function(id, cmd)
@@ -221,7 +243,7 @@ _cmds = {
 			end;
 		};
 
-		[3] = {
+		[4] = {
 			name = "unmute";
 			usage = "!unmute <id>";
 			execute = function(id, cmd)
@@ -237,7 +259,7 @@ _cmds = {
 			end;
 		};
 
-		[4] = {
+		[5] = {
 			name = "fow";
 			usage = "!fow <mode>";
 			execute = function(id, cmd)
@@ -251,7 +273,7 @@ _cmds = {
 			end;
 		};
 
-		[5] = {
+		[6] = {
 			name = "map";
 			usage = "!map <map name>";
 			execute = function(id, cmd)
@@ -271,7 +293,7 @@ _cmds = {
 			end;
 		};
 
-		[6] = {
+		[7] = {
 			name = "admin";
 			usage = "!admin <id>";
 			execute = function(id, cmd)
@@ -288,7 +310,7 @@ _cmds = {
 			end;
 		};
 
-		[7] = {
+		[8] = {
 			name = "unadmin";
 			usage = "!unadmin <id>";
 			execute = function(id, cmd)
@@ -307,7 +329,7 @@ _cmds = {
 			end;
 		};
 
-		[8] = {
+		[9] = {
 			name = "maket";
 			usage = "!maket <id>";
 			execute = function(id, cmd)
@@ -323,7 +345,7 @@ _cmds = {
 			end;
 		};
 
-		[9] = {
+		[10] = {
 			name = "makect";
 			usage = "!makect <id>";
 			execute = function(id, cmd)
@@ -339,7 +361,7 @@ _cmds = {
 			end;
 		};
 
-		[10] = {
+		[11] = {
 			name = "makespec";
 			usage = "!makespec <id>";
 			execute = function(id, cmd)
