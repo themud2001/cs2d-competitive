@@ -260,6 +260,13 @@ _cmds = {
 				else
 					for _, mapName in pairs(_maps) do
 						if(mapName == cmd[2]) then
+							local players = player(0, "table");
+							for _, id in pairs(players) do
+								if(_player[id].usgn ~= 0 or _player[id].steamid ~= "0") then
+									_player[id]:saveStats();
+								end
+							end
+
 							msg(_serverMsgs["info"].."The map was changed to \169000225000"..mapName.." \169250250250by \169000225000"..player(id, "name"));
 							parse("changemap "..mapName);
 							return;
