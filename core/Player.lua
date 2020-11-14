@@ -47,7 +47,7 @@ function Player:calculateDeath(killer)
 		points = _ranks[self.rank].losePoints + (5 * deltaRank);
 	else
 		deltaRank = _player[killer].rank - self.rank;
-		points = _ranks[self.rank].losePoints - (7 * deltaRank);
+		points = math.floor(_ranks[self.rank].losePoints - (7 * deltaRank));
 	end
 
 	self.points = self.points - points;
