@@ -135,21 +135,21 @@ _ranks = {
 		tag = "\169000210252[Diamond II]";
 		points = 2300;
 		winPoints = 70;
-		losePoints = 95;
+		losePoints = 90;
 	};
 
 	[17] = {
 		tag = "\169000210252[Diamond III]";
 		points = 2500;
 		winPoints = 70;
-		losePoints = 100;
+		losePoints = 95;
 	};
 
 	[18] = {
 		tag = "\169163000205[Guardian]";
 		points = 3000;
 		winPoints = 70;
-		losePoints = 110;
+		losePoints = 100;
 	};
 
 	[19] = {
@@ -162,7 +162,7 @@ _ranks = {
 	[20] = {
 		tag = "\169000000000[Overlord]";
 		points = 4250;
-		winPoints = 60;
+		winPoints = 65;
 		losePoints = 120;
 	};
 };
