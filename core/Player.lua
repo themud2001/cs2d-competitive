@@ -66,13 +66,13 @@ function Player:printStats()
 end
 
 function Player:updateRank()
-	if(self.rank >= #_ranks) then return; end
-
 	if(self.points < _ranks[self.rank].points) then
 		self.rank = self.rank - 1;
 		msg2(self.id, _serverMsgs["error"].."You are demoted to: ".._ranks[self.rank].tag);
 		return;
 	end
+
+	if(self.rank >= #_ranks) then return; end
 
 	local promoted = false;
 
