@@ -29,7 +29,7 @@ function Player:calculateKill(killed)
 
 	if(self.rank >= _player[killed].rank) then
 		deltaRank = ((self.rank - _player[killed].rank > 0) and (self.rank - _player[killed].rank)) or 1;
-		points = (_ranks[self.rank].winPoints / deltaRank);
+		points = _ranks[self.rank].winPoints - (_ranks[self.rank].winPoints / deltaRank);
 	else
 		deltaRank = _player[killed].rank - self.rank;
 		points = _ranks[self.rank].winPoints + (10 * deltaRank);
@@ -43,7 +43,7 @@ function Player:calculateDeath(killer)
 	local points;
 
 	if(self.rank >= _player[killer].rank) then
-		deltaRank = ((self.rank - _player[killer].rank > 0) and (self.rank - _player[killer].rank)) or 1;
+		deltaRank = self.rank - _player[killer].rank;
 		points = _ranks[self.rank].losePoints + (5 * deltaRank);
 	else
 		deltaRank = _player[killer].rank - self.rank;
