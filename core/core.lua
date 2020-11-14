@@ -122,10 +122,14 @@ end
 function _kill(killer, victim, weapon, x, y, killerobject, assistant)
 	_player[killer].score = _player[killer].score + 1;
 	_player[victim].deaths = _player[victim].deaths + 1;
-	if(assistant ~= 0) then _player[assistant].assists = _player[assistant].assists + 1; end
 
 	_player[killer]:calculateKill(victim);
 	_player[victim]:calculateDeath(killer);
+
+	if(assistant ~= 0) then
+		_player[assistant].assists = _player[assistant].assists + 1;
+		_player[assistant]:calculateAssist(victim);
+	end
 end
 
 function _leave(id)

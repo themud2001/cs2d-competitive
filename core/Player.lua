@@ -54,6 +54,21 @@ function Player:calculateDeath(killer)
 	if(self.points <= 0) then self.points = 0; end
 end
 
+function Player:calculateAssist(killed)
+	local deltaRank;
+	local points;
+
+	if(self.rank >= _player[killed].rank) then
+		deltaRank = self.rank - _player[killed].rank;
+		points = _ranks[self.rank].winPoints - (deltaRank / _ranks[self.rank].winPoints * 100);
+	else
+		deltaRank = _player[killed].rank - self.rank;
+		points = _ranks[self.rank].winPoints + (10 * deltaRank);
+	end
+
+	self.points = self.points + (points / 2);
+end
+
 function Player:printStats()
 	msg2(self.id, _chatColors[0].."---------Player Stats---------");
 	msg2(self.id, _chatColors[0].."Kills: \169000225000"..self.score);
