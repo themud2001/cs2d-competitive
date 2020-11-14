@@ -46,8 +46,8 @@ end
 
 function _sayteam(id, text)
 	local team = player(0, "team".._player[id].team);
-	for _, id in pairs(team) do
-		msg2(id, _chatColors[_player[id].team].._player[id].name.." ".._ranks[_player[id].rank].tag.." \169240240240(Team)"..(player(id, "health") == 0 and " *DEAD*" or "")..": "..text);
+	for _, idd in pairs(team) do
+		msg2(idd, _chatColors[_player[id].team].._player[id].name.." ".._ranks[_player[id].rank].tag.." \169240240240(Team)"..(player(id, "health") == 0 and " *DEAD*" or "")..": "..text);
 	end
 
 	return 1;
@@ -133,6 +133,8 @@ function _kill(killer, victim, weapon, x, y, killerobject, assistant)
 end
 
 function _leave(id)
+	if(_player[id] == nil) then return; end
+	
 	_player[id]:freeImage();
 	if(_player[id].usgn ~= 0 or _player[id].steamid ~= "0") then
 		_player[id]:saveStats();
