@@ -93,21 +93,21 @@ _ranks = {
 		tag = "\169235184002[Gold II]";
 		points = 1235;
 		winPoints = 100;
-		losePoints = 55;
+		losePoints = 60;
 	};
 
 	[11] = {
 		tag = "\169255200003[Gold III]";
 		points = 1365;
 		winPoints = 100;
-		losePoints = 55;
+		losePoints = 60;
 	};
 
 	[12] = {
 		tag = "\169030212002[Emerald I]";
 		points = 1500;
 		winPoints = 90;
-		losePoints = 55;
+		losePoints = 65;
 	};
 
 	[13] = {
