@@ -86,7 +86,7 @@ function _endround(mode)
 end
 
 function _hit(id, source, weapon, hpdmg, apdmg, rawdmg)
-	if(source) then
+	if(player(source, "exists")) then
 		if(_player[source].team ~= _player[id].team) then
 			_player[source].roundDmg = _player[source].roundDmg + hpdmg;
 			_player[source].totalDmg = _player[source].totalDmg + hpdmg;
